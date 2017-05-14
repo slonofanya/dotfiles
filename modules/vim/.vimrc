@@ -1,3 +1,6 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -56,8 +59,8 @@ set number
 set expandtab
 set tabstop=2
 set shiftwidth=2
-" set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:.
-" set list
+set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:.
+set list
 set backupcopy=yes
 " set foldmethod=syntax
 
@@ -70,6 +73,11 @@ set incsearch
 hi IndentGuidesOdd  ctermbg=black
 hi IndentGuidesEven ctermbg=darkgrey
 
+" NERDTree
+autocmd VimEnter * NERDTree
+autocmd vimenter * wincmd p
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
 "mappings
 
 map <C-n> :NERDTreeToggle<CR>
@@ -78,4 +86,4 @@ map <Leader> <Plug>(easymotion-prefix)
 
 "Aliases
 
-command Ff ! standard-format --fix -w %
+command! Fjs ! standard-format --fix -w %
