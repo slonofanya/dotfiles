@@ -2,4 +2,4 @@
 
 # My custom
 ## Command aliases
-  :`Ff` - Format current file using "standard-format"
+  :`Fjs` - Format current file using "standard-format"
