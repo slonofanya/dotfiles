@@ -13,21 +13,24 @@ Plug 'easymotion/vim-easymotion'
 Plug 'mileszs/ack.vim'
 Plug 'cohama/agit.vim'
 Plug 'flazz/vim-colorschemes'
+Plug 'danro/rename.vim'
+"Plug 'ap/vim-buftabline'
 
 "Ruby
 Plug 'tpope/vim-bundler', { 'for': 'ruby'  }
 Plug 'tpope/vim-rails', { 'for': 'ruby'  }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby'  }
+
 "JavaScript
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'jelera/vim-javascript-syntax' 
-Plug 'gavocanov/vim-js-indent'
-Plug 'othree/yajs.vim'
-Plug 'othree/es.next.syntax.vim'
-Plug 'maksimr/vim-jsbeautify'
-Plug 'sickill/vim-pasta'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'pangloss/vim-javascript', { 'for': 'javascript'  }
+Plug 'mxw/vim-jsx', { 'for': 'javascript'  }
+Plug 'jelera/vim-javascript-syntax' , { 'for': 'javascript'  }
+Plug 'gavocanov/vim-js-indent', { 'for': 'javascript'  }
+Plug 'othree/yajs.vim', { 'for': 'javascript'  }
+Plug 'othree/es.next.syntax.vim', { 'for': 'javascript'  }
+Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript'  }
+Plug 'sickill/vim-pasta', { 'for': 'javascript'  }
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'for': 'javascript'  }
 
 "HTML
 Plug 'gregsexton/MatchTag', { 'for': ['html', 'javascript']  }
@@ -51,6 +54,21 @@ call plug#end()
 syntax on
 
 let g:jsx_ext_required = 0
+let g:syntastic_javascript_checkers = ['standard']
+"autocmd bufwritepost *.js silent !standard-format --fix -w %
+set autoread
+
+"map <c-f> :call JsBeautify()<cr>
+" or
+"autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
+" for json
+"autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
+" for jsx
+"autocmd FileType javascript noremap <buffer> <c-f> :call JsxBeautify()<cr>
+" for html
+"autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+" for css or scss
+"autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 
 colorscheme onedark 
 
@@ -71,8 +89,6 @@ set undodir=~/.vim/undodir
 set ttymouse=xterm2
 set mouse=a
 
-" autocmd bufwritepost *.js silent !standard --fix %
-" set autoread
 
 set hlsearch
 set incsearch
@@ -83,6 +99,7 @@ hi IndentGuidesEven ctermbg=darkgrey
 " NERDTree
   map <C-n> :NERDTreeToggle<CR>
   map <Leader> <Plug>(easymotion-prefix)
+  nmap ,n :NERDTreeFind<CR>
   autocmd VimEnter * NERDTree
   autocmd vimenter * wincmd p
   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -99,4 +116,20 @@ hi IndentGuidesEven ctermbg=darkgrey
 
 "Aliases
   command! Fjs ! standard-format --fix -w %
+
+"FInd and Replace
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_map = '<c-f>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_max_files=0
+let g:ctrlp_max_depth=40
+
+
+"System
+set directory=~/.vim/swapfiles/
+set backupdir=~/.vim/backups/
+
+
+"Tabs -> buffers
+set modifiable
 
