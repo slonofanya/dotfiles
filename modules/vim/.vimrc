@@ -13,20 +13,33 @@ Plug 'easymotion/vim-easymotion'
 Plug 'mileszs/ack.vim'
 Plug 'cohama/agit.vim'
 Plug 'flazz/vim-colorschemes'
+Plug 'danro/rename.vim'
+Plug 'jremmen/vim-ripgrep'
+Plug 'mhinz/vim-startify'
+Plug 'embear/vim-localvimrc'
+Plug 'brooth/far.vim'
+Plug 'wincent/scalpel'
+Plug 'vimwiki/vimwiki'
+Plug 'bling/vim-airline'
 
 "Ruby
 Plug 'tpope/vim-bundler', { 'for': 'ruby'  }
 Plug 'tpope/vim-rails', { 'for': 'ruby'  }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby'  }
+
 "JavaScript
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'jelera/vim-javascript-syntax' 
-Plug 'gavocanov/vim-js-indent'
-Plug 'othree/yajs.vim'
-Plug 'othree/es.next.syntax.vim'
-Plug 'maksimr/vim-jsbeautify'
-Plug 'sickill/vim-pasta'
+Plug 'pangloss/vim-javascript', { 'for': 'javascript'  }
+Plug 'mxw/vim-jsx', { 'for': 'javascript'  }
+Plug 'jelera/vim-javascript-syntax' , { 'for': 'javascript'  }
+Plug 'gavocanov/vim-js-indent', { 'for': 'javascript'  }
+Plug 'othree/yajs.vim', { 'for': 'javascript'  }
+Plug 'othree/es.next.syntax.vim', { 'for': 'javascript'  }
+Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript'  }
+Plug 'sickill/vim-pasta', { 'for': 'javascript'  }
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'for': 'javascript'  }
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'chiel92/vim-autoformat', { 'for': ['javascript', 'css', 'scss']  }
+
 "HTML
 Plug 'gregsexton/MatchTag', { 'for': ['html', 'javascript']  }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript']  }
@@ -49,8 +62,19 @@ call plug#end()
 syntax on
 
 let g:jsx_ext_required = 0
+set autoread
+set autowriteall
+autocmd BufLeave,FocusLost * silent! wall
 
-colorscheme onedark 
+let g:formatterpath = ['standard --fix']
+noremap <F3> :Autoformat<CR>
+autocmd FileType js, scss, css BufWrite * if  | :Autoformat
+autocmd FileType js, scss, css let g:autoformat_autoindent = 1
+autocmd FileType js, scss, css let g:autoformat_retab = 1
+autocmd FileType js, scss, css let g:autoformat_remove_trailing_spaces = 1
+set nocompatible
+
+colorscheme onedark
 
 let g:solarized_termcolors=256
 let g:mapleader=','
@@ -59,31 +83,68 @@ set number
 set expandtab
 set tabstop=2
 set shiftwidth=2
-set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:.
+set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<
 set list
 set backupcopy=yes
 " set foldmethod=syntax
-
-" autocmd bufwritepost *.js silent !standard --fix %
-" set autoread
+set undofile
+set undodir=~/.vim/undodir
 
 set hlsearch
 set incsearch
 
-hi IndentGuidesOdd  ctermbg=black
-hi IndentGuidesEven ctermbg=darkgrey
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+"hi IndentGuidesOdd  ctermbg=black
+hi IndentGuidesEven ctermbg=black
 
 " NERDTree
+map <C-n> :NERDTreeToggle<CR>
+map <Leader> <Plug>(easymotion-prefix)
+nmap ,n :NERDTreeFind<CR>
 autocmd VimEnter * NERDTree
 autocmd vimenter * wincmd p
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
+let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
+let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
 
-"mappings
-
-map <C-n> :NERDTreeToggle<CR>
-map <Leader> <Plug>(easymotion-prefix)
-
+" Tags
+set tags=./tags;/
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 "Aliases
-
 command! Fjs ! standard-format --fix -w %
+
+"Find and Replace
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_map = '<c-f>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_max_files=0
+let g:ctrlp_max_depth=40
+
+let g:rg_highlight=1
+
+let g:ScalpelCommand='S'
+
+"System
+set directory=~/.vim/swapfiles/
+set backupdir=~/.vim/backups/
+
+let g:localvimrc_file = '.vimrc'
+
+set clipboard=unnamedplus
+
+"Tabs -> buffers
+set modifiable
+
+
+"Git
+
+
+"Statu bar
+let g:airline#extensions#tabline#enabled = 1
+
