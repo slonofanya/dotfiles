@@ -1,7 +1,7 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-call plug#begin('~/.vim/plugged')
+call plug#begin()
 
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'valloric/youcompleteme'
@@ -86,10 +86,6 @@ set backupcopy=yes
 set undofile
 set undodir=~/.vim/undodir
 
-set ttymouse=xterm2
-set mouse=a
-
-
 set hlsearch
 set incsearch
 
@@ -126,8 +122,8 @@ let g:ctrlp_max_depth=40
 
 
 "System
-set directory=~/.vim/swapfiles/
-set backupdir=~/.vim/backups/
+set directory=~/.local/share/nvim/swapfiles/
+set backupdir=~/.local/share/nvim/backups/
 
 
 "Tabs -> buffers
