@@ -79,7 +79,7 @@ set number
 set expandtab
 set tabstop=2
 set shiftwidth=2
-set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:.
+set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<
 set list
 set backupcopy=yes
 " set foldmethod=syntax
