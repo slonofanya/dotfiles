@@ -14,7 +14,12 @@ Plug 'mileszs/ack.vim'
 Plug 'cohama/agit.vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'danro/rename.vim'
-"Plug 'ap/vim-buftabline'
+Plug 'tpope/vim-obsession'
+Plug 'dhruvasagar/vim-prosession'
+Plug 'mhinz/vim-startify'
+Plug 'jremmen/vim-ripgrep'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'easymotion/vim-easymotion'
 
 "Ruby
 Plug 'tpope/vim-bundler', { 'for': 'ruby'  }
@@ -73,7 +78,7 @@ set autoread
 colorscheme onedark 
 
 let g:solarized_termcolors=256
-let g:mapleader=','
+let g:mapleader=' '
 set background=dark
 set number
 set expandtab
@@ -113,7 +118,7 @@ hi IndentGuidesEven ctermbg=darkgrey
 "Aliases
   command! Fjs ! standard-format --fix -w %
 
-"FInd and Replace
+"Find and Replace
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_map = '<c-f>'
 let g:ctrlp_cmd = 'CtrlP'
