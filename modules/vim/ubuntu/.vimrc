@@ -98,9 +98,9 @@ hi IndentGuidesOdd  ctermbg=black
 hi IndentGuidesEven ctermbg=darkgrey
 
 " NERDTree
-  map <C-n> :NERDTreeToggle<CR>
+  map <Leader>N :NERDTreeToggle<CR>
   map <Leader> <Plug>(easymotion-prefix)
-  nmap ,n :NERDTreeFind<CR>
+  nmap <Leader>n :NERDTreeFind<CR>
   autocmd VimEnter * NERDTree
   autocmd vimenter * wincmd p
   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -133,4 +133,7 @@ set backupdir=~/.local/share/nvim/backups/
 
 "Tabs -> buffers
 set modifiable
+
+
+" Startify
 
