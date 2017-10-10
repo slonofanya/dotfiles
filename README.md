@@ -22,7 +22,10 @@ mkdir ~/app
 #export fpath=(~/app/ $fpath)
 
 # DOTFILES
-git clone git@github.com:slonofanya/dotfiles.git ~/install
+git clone git@github.com:slonofanya/dotfiles.git ~/install/dotfiles
+
+# RIPGREP
+sudo ln -s /home/sl/install/dotfiles/tools/ripgrep-0.6.0-x86_64-unknown-linux-musl/rg /usr/local/bin
 
 # NVIM
 export NVIM_ROOT=~/.config/nvim
@@ -38,9 +41,11 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.g
 # https://askubuntu.com/questions/575505/glibcxx-3-4-20-not-found-how-to-fix-this-error
 sudo add-apt-repository ppa:ubuntu-toolchain-r/test 
 sudo apt-get update
-sudo apt-get install python-dev python3-dev
+sudo apt-get install python-dev python-pip python3-dev python3-pip
 sudo apt-get upgrade
 sudo apt-get dist-upgrade
+pip install --user -U neovim
+pip3 install --user -U neovim
 cd ~/.config/nvim/plugged/youcompleteme
 ./install.py --clang-completer --tern-completer
 

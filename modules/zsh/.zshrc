@@ -47,7 +47,7 @@ if ([ -s "$NVM_DIR/nvm.sh" ]) then
 fi
 
 export CLICOLOR=1
-export EDITOR='vim'
+export EDITOR='rvim'
 export TERM="screen-256color"
 
 export PATH="$PATH:$HOME/app"
