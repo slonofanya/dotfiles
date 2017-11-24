@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# creates branch, and correct name
+
+argv=$@
+name=$(echo "${argv// /-}")
+declare -l name
+name=$name
+
+git checkout -b $name
+

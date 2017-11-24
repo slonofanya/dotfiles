@@ -8,8 +8,7 @@ Plug 'valloric/youcompleteme'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'kien/ctrlp.vim'
-Plug 'easymotion/vim-easymotion'
+"Plug 'kien/ctrlp.vim'
 Plug 'mileszs/ack.vim'
 Plug 'cohama/agit.vim'
 Plug 'flazz/vim-colorschemes'
@@ -20,6 +19,9 @@ Plug 'mhinz/vim-startify'
 Plug 'jremmen/vim-ripgrep'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'easymotion/vim-easymotion'
+Plug 'eparreno/vim-l9'
+Plug 'vim-scripts/FuzzyFinder'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
 
 "Ruby
 Plug 'tpope/vim-bundler', { 'for': 'ruby'  }
@@ -59,7 +61,8 @@ call plug#end()
 syntax on
 
 let g:jsx_ext_required = 0
-let g:syntastic_javascript_checkers = ['standard']
+let g:syntastic_javascript_checkers = ['eslint']
+
 "autocmd bufwritepost *.js silent !standard-format --fix -w %
 set autoread
 
@@ -116,14 +119,10 @@ hi IndentGuidesEven ctermbg=darkgrey
   map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 "Aliases
-  command! Fjs ! standard-format --fix -w %
+  command! FStandard ! standard-format --fix -w %
+  command! FEslint ! eslint -c ./.eslintrc --fix %
 
 "Find and Replace
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_map = '<c-f>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_max_files=0
-let g:ctrlp_max_depth=40
 
 
 "System
@@ -136,4 +135,9 @@ set modifiable
 
 
 " Startify
+
+
+" FZF
+set rtp+=~/.fzf
+map <C-f> :FZF<CR>
 
