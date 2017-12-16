@@ -22,6 +22,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'eparreno/vim-l9'
 Plug 'vim-scripts/FuzzyFinder'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
+Plug 'jlanzarotta/bufexplorer'
 
 "Ruby
 Plug 'tpope/vim-bundler', { 'for': 'ruby'  }
@@ -140,4 +141,5 @@ set modifiable
 " FZF
 set rtp+=~/.fzf
 map <C-f> :FZF<CR>
+map <C-e> :BufExplorerVerticalSplit<CR>
 
