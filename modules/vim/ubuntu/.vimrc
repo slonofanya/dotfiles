@@ -8,7 +8,6 @@ Plug 'valloric/youcompleteme'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-"Plug 'kien/ctrlp.vim'
 Plug 'mileszs/ack.vim'
 Plug 'cohama/agit.vim'
 Plug 'flazz/vim-colorschemes'
@@ -36,6 +35,7 @@ Plug 'jelera/vim-javascript-syntax' , { 'for': 'javascript'  }
 Plug 'gavocanov/vim-js-indent', { 'for': 'javascript'  }
 Plug 'othree/yajs.vim', { 'for': 'javascript'  }
 Plug 'othree/es.next.syntax.vim', { 'for': 'javascript'  }
+Plug 'Chiel92/vim-autoformat'
 Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript'  }
 Plug 'sickill/vim-pasta', { 'for': 'javascript'  }
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'for': 'javascript'  }
@@ -64,20 +64,9 @@ syntax on
 let g:jsx_ext_required = 0
 let g:syntastic_javascript_checkers = ['eslint']
 
+"System
 "autocmd bufwritepost *.js silent !standard-format --fix -w %
 set autoread
-
-"map <c-f> :call JsBeautify()<cr>
-" or
-"autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
-" for json
-"autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
-" for jsx
-"autocmd FileType javascript noremap <buffer> <c-f> :call JsxBeautify()<cr>
-" for html
-"autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
-" for css or scss
-"autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 
 colorscheme onedark 
 
@@ -94,6 +83,9 @@ set backupcopy=yes
 " set foldmethod=syntax
 set undofile
 set undodir=~/.vim/undodir
+let g:localvimrc_file = '.vimrc'
+set directory=~/.local/share/nvim/swapfiles/
+set backupdir=~/.local/share/nvim/backups/
 
 set hlsearch
 set incsearch
@@ -123,23 +115,24 @@ hi IndentGuidesEven ctermbg=darkgrey
   command! FStandard ! standard-format --fix -w %
   command! FEslint ! eslint -c ./.eslintrc --fix %
 
-"Find and Replace
-
-
-"System
-set directory=~/.local/share/nvim/swapfiles/
-set backupdir=~/.local/share/nvim/backups/
-
 
 "Tabs -> buffers
 set modifiable
-
-
-" Startify
 
 
 " FZF
 set rtp+=~/.fzf
 map <C-f> :FZF<CR>
 map <C-e> :BufExplorerVerticalSplit<CR>
+
+set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
+
+" JS
+" map <c-f> :call JsBeautify()<cr>
+" map <c-f> :call JsxBeautify()<cr>
+" let g:config_Beautifier = {}
+" let g:config_Beautifier['js'] = {}
+" let g:config_Beautifier['js'].indent_style = 'space'
+" let g:config_Beautifier['js'].indent_size = '2'
+noremap <F3> :Autoformat<CR>
 

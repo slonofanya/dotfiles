@@ -1,26 +1,27 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-call plug#begin('~/.vim/plugged')
+call plug#begin()
 
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'valloric/youcompleteme'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'kien/ctrlp.vim'
-Plug 'easymotion/vim-easymotion'
 Plug 'mileszs/ack.vim'
 Plug 'cohama/agit.vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'danro/rename.vim'
-Plug 'jremmen/vim-ripgrep'
+Plug 'tpope/vim-obsession'
+Plug 'dhruvasagar/vim-prosession'
 Plug 'mhinz/vim-startify'
-Plug 'embear/vim-localvimrc'
-Plug 'brooth/far.vim'
-Plug 'wincent/scalpel'
-Plug 'vimwiki/vimwiki'
-Plug 'bling/vim-airline'
+Plug 'jremmen/vim-ripgrep'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'easymotion/vim-easymotion'
+Plug 'eparreno/vim-l9'
+Plug 'vim-scripts/FuzzyFinder'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
+Plug 'jlanzarotta/bufexplorer'
 
 "Ruby
 Plug 'tpope/vim-bundler', { 'for': 'ruby'  }
@@ -34,11 +35,10 @@ Plug 'jelera/vim-javascript-syntax' , { 'for': 'javascript'  }
 Plug 'gavocanov/vim-js-indent', { 'for': 'javascript'  }
 Plug 'othree/yajs.vim', { 'for': 'javascript'  }
 Plug 'othree/es.next.syntax.vim', { 'for': 'javascript'  }
-Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript'  }
+Plug 'Chiel92/vim-autoformat'
+Plug 'maksimr/vim-jsbeautify'
 Plug 'sickill/vim-pasta', { 'for': 'javascript'  }
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'for': 'javascript'  }
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'chiel92/vim-autoformat', { 'for': ['javascript', 'css', 'scss']  }
 
 "HTML
 Plug 'gregsexton/MatchTag', { 'for': ['html', 'javascript']  }
@@ -62,7 +62,9 @@ call plug#end()
 syntax on
 
 let g:jsx_ext_required = 0
-set autoread
+let g:syntastic_javascript_checkers = ['eslint']
+let g:formatdef_prettier_javascript='standard'
+
 set autowriteall
 autocmd BufLeave,FocusLost * silent! wall
 
@@ -72,12 +74,13 @@ autocmd FileType js, scss, css BufWrite * if  | :Autoformat
 autocmd FileType js, scss, css let g:autoformat_autoindent = 1
 autocmd FileType js, scss, css let g:autoformat_retab = 1
 autocmd FileType js, scss, css let g:autoformat_remove_trailing_spaces = 1
-set nocompatible
 
+"System
+set autoread
 colorscheme onedark
 
 let g:solarized_termcolors=256
-let g:mapleader=','
+let g:mapleader=' '
 set background=dark
 set number
 set expandtab
@@ -89,27 +92,30 @@ set backupcopy=yes
 " set foldmethod=syntax
 set undofile
 set undodir=~/.vim/undodir
+let g:localvimrc_file = '.vimrc'
+set directory=~/.local/share/nvim/swapfiles/
+set backupdir=~/.local/share/nvim/backups/
+
+let g:localvimrc_file = '.vimrc'
 
 set hlsearch
 set incsearch
 
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_auto_colors = 0
-"hi IndentGuidesOdd  ctermbg=black
-hi IndentGuidesEven ctermbg=black
+hi IndentGuidesOdd  ctermbg=black
+hi IndentGuidesEven ctermbg=darkgrey
 
 " NERDTree
-map <C-n> :NERDTreeToggle<CR>
-map <Leader> <Plug>(easymotion-prefix)
-nmap ,n :NERDTreeFind<CR>
-autocmd VimEnter * NERDTree
-autocmd vimenter * wincmd p
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-let g:NERDTreeFileExtensionHighlightFullName = 1
-let g:NERDTreeExactMatchHighlightFullName = 1
-let g:NERDTreePatternMatchHighlightFullName = 1
-let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
-let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
+  map <Leader>N :NERDTreeToggle<CR>
+  map <Leader> <Plug>(easymotion-prefix)
+  nmap <Leader>n :NERDTreeFind<CR>
+  autocmd VimEnter * NERDTree
+  autocmd vimenter * wincmd p
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+  let g:NERDTreeFileExtensionHighlightFullName = 1
+  let g:NERDTreeExactMatchHighlightFullName = 1
+  let g:NERDTreePatternMatchHighlightFullName = 1
+  let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
+  let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
 
 " Tags
 set tags=./tags;/
@@ -117,34 +123,25 @@ map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 "Aliases
-command! Fjs ! standard-format --fix -w %
-
-"Find and Replace
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_map = '<c-f>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_max_files=0
-let g:ctrlp_max_depth=40
-
-let g:rg_highlight=1
-
-let g:ScalpelCommand='S'
-
-"System
-set directory=~/.vim/swapfiles/
-set backupdir=~/.vim/backups/
-
-let g:localvimrc_file = '.vimrc'
-
-set clipboard=unnamedplus
+  command! FStandard ! standard-format --fix -w %
+  command! FEslint ! eslint -c ./.eslintrc --fix %
 
 "Tabs -> buffers
 set modifiable
 
 
-"Git
+"System
+set directory=~/.local/share/nvim/swapfiles/
+set backupdir=~/.local/share/nvim/backups/
 
 
 "Statu bar
 let g:airline#extensions#tabline#enabled = 1
+
+
+" FZF
+set rtp+=~/.fzf
+map <C-f> :FZF<CR>
+map <C-e> :BufExplorerVerticalSplit<CR>
+" Macos
 

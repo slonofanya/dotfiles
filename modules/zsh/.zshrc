@@ -128,3 +128,12 @@ export DB_HOST=127.0.0.1
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+#export PATH="$HOME/.phpenv/bin:$PATH"
+#eval "$(phpenv init -)"
+
+[[ -e ~/.phpbrew/bashrc  ]] && source ~/.phpbrew/bashrc
+export PHPBREW_SET_PROMPT=1
+export PHPBREW_RC_ENABLE=1
+
+export PATH="/usr/local/sbin:$PATH"
