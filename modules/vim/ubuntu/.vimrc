@@ -68,7 +68,7 @@ let g:syntastic_javascript_checkers = ['eslint']
 "autocmd bufwritepost *.js silent !standard-format --fix -w %
 set autoread
 
-colorscheme onedark 
+colorscheme onedark
 
 let g:solarized_termcolors=256
 let g:mapleader=' '
@@ -135,4 +135,5 @@ set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁ
 " let g:config_Beautifier['js'].indent_style = 'space'
 " let g:config_Beautifier['js'].indent_size = '2'
 noremap <F3> :Autoformat<CR>
+let g:formatdef_prettier_javascript = '"prettier"'
 
