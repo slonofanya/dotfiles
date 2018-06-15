@@ -22,6 +22,7 @@ Plug 'eparreno/vim-l9'
 Plug 'vim-scripts/FuzzyFinder'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
 Plug 'jlanzarotta/bufexplorer'
+Plug 'sheerun/vim-polyglot'
 
 "Ruby
 Plug 'tpope/vim-bundler', { 'for': 'ruby'  }
@@ -80,7 +81,7 @@ set shiftwidth=2
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<
 set list
 set backupcopy=yes
-" set foldmethod=syntax
+set clipboard=unnamed
 set undofile
 set undodir=~/.vim/undodir
 let g:localvimrc_file = '.vimrc'
@@ -92,6 +93,9 @@ set incsearch
 
 hi IndentGuidesOdd  ctermbg=black
 hi IndentGuidesEven ctermbg=darkgrey
+
+" statusline
+  :set statusline=%{fugitive#statusline()}\ %L\ %f
 
 " NERDTree
   map <Leader>N :NERDTreeToggle<CR>
@@ -128,12 +132,6 @@ map <C-e> :BufExplorerVerticalSplit<CR>
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 
 " JS
-" map <c-f> :call JsBeautify()<cr>
-" map <c-f> :call JsxBeautify()<cr>
-" let g:config_Beautifier = {}
-" let g:config_Beautifier['js'] = {}
-" let g:config_Beautifier['js'].indent_style = 'space'
-" let g:config_Beautifier['js'].indent_size = '2'
 noremap <F3> :Autoformat<CR>
 let g:formatdef_prettier_javascript = '"prettier"'
 
