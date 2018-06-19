@@ -33,7 +33,6 @@ Plug 'vim-ruby/vim-ruby', { 'for': 'ruby'  }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript'  }
 Plug 'mxw/vim-jsx', { 'for': 'javascript'  }
 Plug 'jelera/vim-javascript-syntax' , { 'for': 'javascript'  }
-Plug 'gavocanov/vim-js-indent', { 'for': 'javascript'  }
 Plug 'othree/yajs.vim', { 'for': 'javascript'  }
 Plug 'othree/es.next.syntax.vim', { 'for': 'javascript'  }
 Plug 'Chiel92/vim-autoformat'
@@ -73,6 +72,7 @@ colorscheme onedark
 
 let g:solarized_termcolors=256
 let g:mapleader=' '
+inoremap jj <Esc>
 set background=dark
 set number
 set expandtab
@@ -96,29 +96,29 @@ hi IndentGuidesOdd  ctermbg=black
 hi IndentGuidesEven ctermbg=darkgrey
 
 " statusline
-  :set statusline=%{fugitive#statusline()}\ %L\ %f
+:set statusline=%{fugitive#statusline()}\ %L\ %f
 
 " NERDTree
-  map <Leader>N :NERDTreeToggle<CR>
-  map <Leader> <Plug>(easymotion-prefix)
-  nmap <Leader>n :NERDTreeFind<CR>
-  autocmd VimEnter * NERDTree
-  autocmd vimenter * wincmd p
-  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-  let g:NERDTreeFileExtensionHighlightFullName = 1
-  let g:NERDTreeExactMatchHighlightFullName = 1
-  let g:NERDTreePatternMatchHighlightFullName = 1
-  let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
-  let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
+map <Leader>N :NERDTreeToggle<CR>
+map <Leader> <Plug>(easymotion-prefix)
+nmap <Leader>n :NERDTreeFind<CR>
+autocmd VimEnter * NERDTree
+autocmd vimenter * wincmd p
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
+let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
+let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
 
 " Tags
-  set tags=./tags;/
-  map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
-  map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+set tags=./tags;/
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 "Aliases
-  command! FStandard ! standard-format --fix -w %
-  command! FEslint ! eslint -c ./.eslintrc --fix %
+command! FStandard ! standard-format --fix -w %
+command! FEslint ! eslint -c ./.eslintrc --fix %
 
 
 "Tabs -> buffers
@@ -128,7 +128,7 @@ set modifiable
 " FZF
 set rtp+=~/.fzf
 map <C-f> :FZF<CR>
-map <C-e> :BufExplorerVerticalSplit<CR>
+nmap <Leader>b :BufExplorerVerticalSplit<CR>
 
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 
