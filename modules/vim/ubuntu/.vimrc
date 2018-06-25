@@ -22,7 +22,6 @@ Plug 'eparreno/vim-l9'
 Plug 'vim-scripts/FuzzyFinder'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
 Plug 'jlanzarotta/bufexplorer'
-Plug 'sheerun/vim-polyglot'
 
 "Ruby
 Plug 'tpope/vim-bundler', { 'for': 'ruby'  }
@@ -33,7 +32,6 @@ Plug 'vim-ruby/vim-ruby', { 'for': 'ruby'  }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript'  }
 Plug 'mxw/vim-jsx', { 'for': 'javascript'  }
 Plug 'jelera/vim-javascript-syntax' , { 'for': 'javascript'  }
-Plug 'othree/yajs.vim', { 'for': 'javascript'  }
 Plug 'othree/es.next.syntax.vim', { 'for': 'javascript'  }
 Plug 'Chiel92/vim-autoformat'
 Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript'  }
@@ -63,6 +61,7 @@ syntax on
 
 let g:jsx_ext_required = 0
 let g:syntastic_javascript_checkers = ['eslint']
+filetype plugin indent on
 
 "System
 "autocmd bufwritepost *.js silent !standard-format --fix -w %
@@ -134,5 +133,6 @@ set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁ
 
 " JS
 noremap <F3> :Autoformat<CR>
-let g:formatdef_prettier_javascript = '"prettier"'
+"let g:formatdef_prettier_javascript = '"prettier"'
+let g:autoformat_remove_trailing_spaces = 1
 
