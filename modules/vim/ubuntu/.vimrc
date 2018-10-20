@@ -22,7 +22,6 @@ Plug 'eparreno/vim-l9'
 Plug 'vim-scripts/FuzzyFinder'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
 Plug 'jlanzarotta/bufexplorer'
-Plug 'sheerun/vim-polyglot'
 
 Plug 'joe-skb7/cscope-maps'
 Plug 'majutsushi/tagbar'
@@ -37,7 +36,6 @@ Plug 'vim-ruby/vim-ruby', { 'for': 'ruby'  }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript'  }
 Plug 'mxw/vim-jsx', { 'for': 'javascript'  }
 Plug 'jelera/vim-javascript-syntax' , { 'for': 'javascript'  }
-Plug 'othree/yajs.vim', { 'for': 'javascript'  }
 Plug 'othree/es.next.syntax.vim', { 'for': 'javascript'  }
 Plug 'Chiel92/vim-autoformat'
 Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript'  }
@@ -66,6 +64,7 @@ call plug#end()
 syntax on
 
 let g:jsx_ext_required = 0
+let g:syntastic_javascript_checkers = ['eslint']
 
 "System
 "autocmd bufwritepost *.js silent !standard-format --fix -w %
@@ -166,4 +165,5 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
+let g:autoformat_remove_trailing_spaces = 1
 
