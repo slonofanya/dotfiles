@@ -24,6 +24,10 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
 Plug 'jlanzarotta/bufexplorer'
 Plug 'sheerun/vim-polyglot'
 
+Plug 'joe-skb7/cscope-maps'
+Plug 'majutsushi/tagbar'
+Plug 'vim-syntastic/syntastic'
+
 "Ruby
 Plug 'tpope/vim-bundler', { 'for': 'ruby'  }
 Plug 'tpope/vim-rails', { 'for': 'ruby'  }
@@ -62,13 +66,14 @@ call plug#end()
 syntax on
 
 let g:jsx_ext_required = 0
-let g:syntastic_javascript_checkers = ['eslint']
 
 "System
 "autocmd bufwritepost *.js silent !standard-format --fix -w %
 set autoread
 
 colorscheme onedark
+"colorscheme iceberg
+set encoding=utf-8
 
 let g:solarized_termcolors=256
 let g:mapleader=' '
@@ -88,6 +93,7 @@ set undodir=~/.vim/undodir
 let g:localvimrc_file = '.vimrc'
 set directory=~/.local/share/nvim/swapfiles/
 set backupdir=~/.local/share/nvim/backups/
+set autochdir
 
 set hlsearch
 set incsearch
@@ -97,6 +103,17 @@ hi IndentGuidesEven ctermbg=darkgrey
 
 " statusline
 :set statusline=%{fugitive#statusline()}\ %L\ %f
+:set statusline+=%#warningmsg#
+:set statusline+=%{SyntasticStatuslineFlag()}
+:set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exec = 'eslint_d'
 
 " NERDTree
 map <Leader>N :NERDTreeToggle<CR>
@@ -111,8 +128,8 @@ let g:NERDTreePatternMatchHighlightFullName = 1
 let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
 let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
 
-" Tags
-set tags=./tags;/
+" Tabs
+set tags=./tags,tags;$HOME
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
@@ -123,6 +140,9 @@ command! FEslint ! eslint -c ./.eslintrc --fix %
 
 "Tabs -> buffers
 set modifiable
+
+" Tags
+nmap <F8> :TagbarToggle<CR>
 
 
 " FZF
@@ -135,4 +155,15 @@ set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁ
 " JS
 noremap <F3> :Autoformat<CR>
 let g:formatdef_prettier_javascript = '"prettier"'
+let g:loaded_matchit = 1
+
+" Highlight trailing spaces
+" http://vim.wikia.com/wiki/Highlight_unwanted_spaces
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
 

@@ -137,4 +137,6 @@ export PHPBREW_SET_PROMPT=1
 export PHPBREW_RC_ENABLE=1
 
 export PATH="/usr/local/sbin:$PATH"
-if [[ $TMUX ]]; then source ~/.tmux-git/tmux-git.sh; fi
+export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/bin:$PATH"
+#if [[ $TMUX ]]; then source ~/.tmux-git/tmux-git.sh; fi
