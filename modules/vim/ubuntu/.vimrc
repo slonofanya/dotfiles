@@ -80,8 +80,8 @@ call plug#end()
 syntax on
 
 let g:jsx_ext_required = 0
-let g:syntastic_javascript_checkers = ['eslint']
-let b:ale_fixers = {'javascript': ['prettier', 'eslint']}
+let g:syntastic_javascript_checkers = ['standard']
+let b:ale_fixers = {'javascript': ['standard']}
 let g:used_javascript_libs = 'underscore,jquery,react,chai,handlebars'
 filetype plugin indent on
 
@@ -89,11 +89,9 @@ let g:ale_completion_enabled = 1
 let g:airline#extensions#ale#enabled = 1
 
 "System
-"autocmd bufwritepost *.js silent !standard-format --fix -w %
 set autoread
 
 colorscheme onedark
-"colorscheme iceberg
 set encoding=utf-8
 
 let g:solarized_termcolors=256
@@ -128,7 +126,6 @@ hi IndentGuidesEven ctermbg=darkgrey
 " statusline
 :set statusline=%{fugitive#statusline()}\ %L\ %f
 :set statusline+=%#warningmsg#
-:set statusline+=%{SyntasticStatuslineFlag()}
 :set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
