@@ -26,6 +26,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-commentary'
 Plug 'w0rp/ale'
 
+
 Plug 'joe-skb7/cscope-maps'
 Plug 'majutsushi/tagbar'
 Plug 'vim-syntastic/syntastic'
@@ -47,9 +48,6 @@ Plug 'sickill/vim-pasta', { 'for': 'javascript'  }
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'for': 'javascript'  }
 
 "HTML
-"Plug 'gregsexton/MatchTag', { 'for': ['html', 'javascript']  }
-"Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript']  }
-"Plug 'othree/html5.vim', { 'for': ['html', 'javascript']  }
 Plug 'tpope/vim-haml', { 'for': 'haml' }
 "CSS/LESS/Stylus/SCSS
 Plug 'ap/vim-css-color', { 'for': ['css', 'scss', 'sass', 'less', 'stylus']  }
@@ -123,9 +121,23 @@ set incsearch
 hi IndentGuidesOdd  ctermbg=black
 hi IndentGuidesEven ctermbg=darkgrey
 
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+
+    return l:counts.total == 0 ? 'OK' : printf(
+    \   '%dW %dE',
+    \   all_non_errors,
+    \   all_errors
+    \)
+endfunction
+
 " statusline
-:set statusline=%{fugitive#statusline()}\ %L\ %f
+:set statusline=%{fugitive#statusline()}\ %L\ %f\ 
 :set statusline+=%#warningmsg#
+:set statusline+=%{LinterStatus()}
 :set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
