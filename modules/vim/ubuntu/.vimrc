@@ -22,6 +22,9 @@ Plug 'eparreno/vim-l9'
 Plug 'vim-scripts/FuzzyFinder'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
 Plug 'jlanzarotta/bufexplorer'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-commentary'
+Plug 'w0rp/ale'
 
 "Ruby
 Plug 'tpope/vim-bundler', { 'for': 'ruby'  }
@@ -29,9 +32,10 @@ Plug 'tpope/vim-rails', { 'for': 'ruby'  }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby'  }
 
 "JavaScript
-Plug 'pangloss/vim-javascript', { 'for': 'javascript'  }
-Plug 'mxw/vim-jsx', { 'for': 'javascript'  }
+Plug 'othree/yajs.vim' , { 'for': 'javascript'  }
+Plug 'mxw/vim-jsx' , { 'for': 'javascript'  }
 Plug 'jelera/vim-javascript-syntax' , { 'for': 'javascript'  }
+Plug 'othree/javascript-libraries-syntax.vim' , { 'for': 'javascript'  }
 Plug 'othree/es.next.syntax.vim', { 'for': 'javascript'  }
 Plug 'Chiel92/vim-autoformat'
 Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript'  }
@@ -39,9 +43,9 @@ Plug 'sickill/vim-pasta', { 'for': 'javascript'  }
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'for': 'javascript'  }
 
 "HTML
-Plug 'gregsexton/MatchTag', { 'for': ['html', 'javascript']  }
-Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript']  }
-Plug 'othree/html5.vim', { 'for': ['html', 'javascript']  }
+"Plug 'gregsexton/MatchTag', { 'for': ['html', 'javascript']  }
+"Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript']  }
+"Plug 'othree/html5.vim', { 'for': ['html', 'javascript']  }
 Plug 'tpope/vim-haml', { 'for': 'haml' }
 "CSS/LESS/Stylus/SCSS
 Plug 'ap/vim-css-color', { 'for': ['css', 'scss', 'sass', 'less', 'stylus']  }
@@ -55,13 +59,30 @@ Plug 'morhetz/gruvbox'
 Plug 'dracula/vim'
 Plug 'crusoexia/vim-monokai'
 
+" Track the engine.
+Plug 'SirVer/ultisnips'
+" Snippets are separated from the engine. Add this if you want them:
+Plug 'honza/vim-snippets'
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-l>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
 call plug#end()
 
 syntax on
 
 let g:jsx_ext_required = 0
 let g:syntastic_javascript_checkers = ['eslint']
+let b:ale_fixers = {'javascript': ['prettier', 'eslint']}
+let g:used_javascript_libs = 'underscore,jquery,react,chai,handlebars'
 filetype plugin indent on
+
+let g:ale_completion_enabled = 1
+let g:airline#extensions#ale#enabled = 1
 
 "System
 "autocmd bufwritepost *.js silent !standard-format --fix -w %
@@ -87,6 +108,9 @@ set undodir=~/.vim/undodir
 let g:localvimrc_file = '.vimrc'
 set directory=~/.local/share/nvim/swapfiles/
 set backupdir=~/.local/share/nvim/backups/
+let g:prosession_dir = '~/.vim/session'
+
+let g:prosession_on_startup = 1
 
 set hlsearch
 set incsearch
@@ -132,7 +156,9 @@ nmap <Leader>b :BufExplorerVerticalSplit<CR>
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 
 " JS
-noremap <F3> :Autoformat<CR>
+noremap <F3> :FStandard<CR>
 "let g:formatdef_prettier_javascript = '"prettier"'
 let g:autoformat_remove_trailing_spaces = 1
+
+let g:deoplete#enable_at_startup = 1
 
