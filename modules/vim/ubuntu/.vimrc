@@ -7,7 +7,7 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'valloric/youcompleteme'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
 Plug 'mileszs/ack.vim'
 Plug 'cohama/agit.vim'
 Plug 'flazz/vim-colorschemes'
@@ -113,7 +113,6 @@ set backupdir=~/.local/share/nvim/backups/
 let g:prosession_dir = '~/.vim/session'
 
 let g:prosession_on_startup = 1
-set autochdir
 
 set hlsearch
 set incsearch
