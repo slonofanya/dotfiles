@@ -26,7 +26,6 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-commentary'
 Plug 'w0rp/ale'
 
-
 Plug 'joe-skb7/cscope-maps'
 Plug 'majutsushi/tagbar'
 Plug 'vim-syntastic/syntastic'
@@ -46,6 +45,7 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript'  }
 Plug 'sickill/vim-pasta', { 'for': 'javascript'  }
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'for': 'javascript'  }
+Plug 'herringtondarkholme/yats.vim'
 
 "HTML
 Plug 'tpope/vim-haml', { 'for': 'haml' }
@@ -199,5 +199,5 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
 let g:autoformat_remove_trailing_spaces = 1
-let g:deoplete#enable_at_startup = 1
+let g:yats_host_keyword = 1
 

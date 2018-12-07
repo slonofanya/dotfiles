@@ -137,13 +137,8 @@ export PHPBREW_SET_PROMPT=1
 export PHPBREW_RC_ENABLE=1
 
 export PATH="/usr/local/sbin:$PATH"
-<<<<<<< HEAD
 if [[ $TMUX ]]; then source ~/.tmux-git/tmux-git.sh; fi
 
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH=/home/sl/.deno/bin:$PATH
-=======
-export PATH="/usr/local/bin:$PATH"
-export PATH="/usr/bin:$PATH"
-#if [[ $TMUX ]]; then source ~/.tmux-git/tmux-git.sh; fi
->>>>>>> 3ed183e046b8136d1ea38bed9cb92af4855e3af8
+
