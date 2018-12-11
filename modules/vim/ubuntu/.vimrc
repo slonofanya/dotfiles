@@ -107,9 +107,9 @@ set clipboard=unnamed
 set backspace=indent,eol,start
 set undofile
 set undodir=~/.vim/undodir
+set directory=~/.vim/swapfiles
+set backupdir=~/.vim/backups
 let g:localvimrc_file = '.vimrc'
-set directory=~/.local/share/nvim/swapfiles/
-set backupdir=~/.local/share/nvim/backups/
 let g:prosession_dir = '~/.vim/session'
 
 let g:prosession_on_startup = 1
