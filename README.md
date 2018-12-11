@@ -48,6 +48,8 @@ sudo apt-get upgrade
 sudo apt-get dist-upgrade
 cd ${VIM_ROOT}/plugged/youcompleteme
 ./install.py --clang-completer --tern-completer
+git clone https://github.com/joshdick/onedark.vim ~/install/ondark.vim
+cp ~/onedark.vim/autoload/onedark.vim ~/.vim/autoload/
 ```
 
 # ZSH
