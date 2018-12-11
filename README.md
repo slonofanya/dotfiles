@@ -1,8 +1,5 @@
 # dotfiles
 
-## Command aliases
-  :`Fjs` - Format current file using "standard-format"
-
 ## Prerequisites:
   - ubuntu
 
