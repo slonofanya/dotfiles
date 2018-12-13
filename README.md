@@ -4,9 +4,10 @@
   - ubuntu
 
 ```
+sudo add-apt-repository ppa:twodopeshaggy/jarun
 sudo apt-get update
 
-sudo apt install git curl cmake -y
+sudo apt install git curl cmake nnn -y
 mkdir ~/install
 ```
 
