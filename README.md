@@ -71,6 +71,7 @@ cd ~/install/tmux
 sh autogen.sh
 ./configure && make
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+git clone git://github.com/drmad/tmux-git.git ~/.tmux-git
 sudo ln -s ~/install/tmux/tmux /usr/local/bin/
 sudo ln -s ~/install/dotfiles/modules/tmux/.tmux.conf ~/.tmux.conf
 # For installing tmux plugins press: "<prefix> + I" and wait for install
