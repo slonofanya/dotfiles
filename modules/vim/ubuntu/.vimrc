@@ -25,6 +25,7 @@ Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-commentary'
 Plug 'w0rp/ale'
+Plug 'chrisbra/NrrwRgn'
 
 Plug 'joe-skb7/cscope-maps'
 Plug 'majutsushi/tagbar'
@@ -58,8 +59,6 @@ Plug 'wavded/vim-stylus', { 'for': 'stylus'  }"
 
 "collor chemas"
 Plug 'morhetz/gruvbox'
-Plug 'dracula/vim'
-Plug 'crusoexia/vim-monokai'
 
 " Track the engine.
 Plug 'SirVer/ultisnips'
@@ -75,6 +74,7 @@ let g:UltiSnipsEditSplit="vertical"
 
 call plug#end()
 
+filetype plugin on
 syntax on
 
 let g:jsx_ext_required = 0
@@ -112,6 +112,7 @@ set backupdir=~/.vim/backups
 let g:localvimrc_file = '.vimrc'
 let g:prosession_dir = '~/.vim/session'
 
+let g:prosession_per_branch = 1
 let g:prosession_on_startup = 1
 
 set hlsearch
@@ -137,6 +138,7 @@ endfunction
 :set statusline=%{fugitive#statusline()}\ %L\ %f\ 
 :set statusline+=%#warningmsg#
 :set statusline+=%{LinterStatus()}
+:set statusline+=\ %{ObsessionStatus()}
 :set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
