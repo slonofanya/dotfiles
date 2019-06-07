@@ -25,10 +25,14 @@ Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-commentary'
 Plug 'w0rp/ale'
+Plug 'echuraev/translate-shell.vim', { 'do': 'wget -O ~/.vim/trans git.io/trans && chmod +x ~/.vim/trans' }
+Plug 'iberianpig/tig-explorer.vim'
 
 Plug 'joe-skb7/cscope-maps'
 Plug 'majutsushi/tagbar'
 Plug 'vim-syntastic/syntastic'
+
+Plug 'uguu-org/vim-matrix-screensaver'
 
 "Ruby
 Plug 'tpope/vim-bundler', { 'for': 'ruby'  }
@@ -100,7 +104,7 @@ set number
 set expandtab
 set tabstop=2
 set shiftwidth=2
-set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<
+set listchars=eol:¬,tab:>-,trail:~,extends:>,precedes:<,space:·
 set list
 set backupcopy=yes
 set clipboard=unnamed
@@ -201,3 +205,6 @@ autocmd BufWinLeave * call clearmatches()
 let g:autoformat_remove_trailing_spaces = 1
 let g:yats_host_keyword = 1
 
+let g:trans_bin = "~/.vim"
+vnoremap <silent> <leader>t :Trans<CR>
+vnoremap <silent> <leader>td :TransSelectDirection<CR>

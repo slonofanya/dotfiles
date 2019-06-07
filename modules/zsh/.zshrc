@@ -141,4 +141,3 @@ if [[ $TMUX ]]; then source ~/.tmux-git/tmux-git.sh; fi
 
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH=/home/sl/.deno/bin:$PATH
-
