@@ -7,7 +7,8 @@ export ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="agnoster"
+ZSH_THEME="ys"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -85,59 +86,51 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+# export PATH="$PATH:$HOME/.rvm/bin"
 
-export NVM_DIR="$HOME/.nvm"
+#alias python='python3'
 
-if ([ -s "$NVM_DIR/nvm.sh" ]) then
-  \. "$NVM_DIR/nvm.sh"  # This loads nvm
+DEFAULT_USER="sl"
 
-  # place this after nvm initialization!
-  autoload -U add-zsh-hook
-  load-nvmrc() {
-    local node_version="$(nvm version)"
-    local nvmrc_path="$(nvm_find_nvmrc)"
+autoload -Uz compinit
+if [ $(date +'%j') != $(/usr/bin/stat -f '%Sm' -t '%j' ${ZDOTDIR:-$HOME}/.zcompdump) ]; then
+  compinit
+else
+  compinit -C
+fi
 
-    if [ -n "$nvmrc_path" ]; then
-      local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-      if [ "$nvmrc_node_version" = "N/A" ]; then
-        nvm install
-      elif [ "$nvmrc_node_version" != "$node_version" ]; then
-        nvm use
-      fi
-    elif [ "$node_version" != "$(nvm version default)" ]; then
-      echo "Reverting to nvm default version"
-      nvm use default
-    fi
+# Defer initialization of nvm until nvm, node or a node-dependent command is
+# run. Ensure this block is only run once if .bashrc gets sourced multiple times
+# by checking whether __init_nvm is a function.
+if [ -s "$HOME/.nvm/nvm.sh" ] && [ ! "$(whence -w __init_nvm)" = function ]; then
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+  declare -a __node_commands=('nvm' 'node' 'npm' 'yarn' 'gulp' 'grunt' 'webpack')
+  function __init_nvm() {
+    for i in "${__node_commands[@]}"; do unalias $i; done
+    . "$NVM_DIR"/nvm.sh
+    unset __node_commands
+    unset -f __init_nvm
   }
-  add-zsh-hook chpwd load-nvmrc
-  load-nvmrc
+  for i in "${__node_commands[@]}"; do alias $i='__init_nvm && '$i; done
 fi
 
 export PATH="$PATH:$HOME/install/dotfiles/tools"
 export PATH="$PATH:$HOME/install/dotfiles/tools/ripgrep-0.6.0-x86_64-unknown-linux-musl"
 export PATH="$PATH:$HOME/app"
+export PATH="$PATH:NVM_DIR"
 
 export CLICOLOR=1
-export EDITOR='nvim'
+export EDITOR='vim'
 export TERM="screen-256color"
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
 export DB_HOST=127.0.0.1
 
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-#export PATH="$HOME/.phpenv/bin:$PATH"
-#eval "$(phpenv init -)"
-
-[[ -e ~/.phpbrew/bashrc  ]] && source ~/.phpbrew/bashrc
-export PHPBREW_SET_PROMPT=1
-export PHPBREW_RC_ENABLE=1
-
 export PATH="/usr/local/sbin:$PATH"
-if [[ $TMUX ]]; then source ~/.tmux-git/tmux-git.sh; fi
+# if [[ $TMUX ]]; then source ~/.tmux-git/tmux-git.sh; fi
 
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH=/home/sl/.deno/bin:$PATH
