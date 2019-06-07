@@ -107,7 +107,7 @@ set shiftwidth=2
 set listchars=eol:¬,tab:>-,trail:~,extends:>,precedes:<,space:·
 set list
 set backupcopy=yes
-set clipboard=unnamed
+set clipboard=unnamedplus
 set backspace=indent,eol,start
 set undofile
 set undodir=~/.vim/undodir
