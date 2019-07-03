@@ -51,6 +51,9 @@ cd ${VIM_ROOT}/plugged/youcompleteme
 ./install.py --clang-completer --tern-completer
 git clone https://github.com/joshdick/onedark.vim ~/install/ondark.vim
 cp ~/onedark.vim/autoload/onedark.vim ~/.vim/autoload/
+
+# Typescript langserver:
+#  https://github.com/sourcegraph/javascript-typescript-langserver
 ```
 
 # ZSH

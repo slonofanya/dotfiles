@@ -26,19 +26,11 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-commentary'
 Plug 'w0rp/ale'
 Plug 'echuraev/translate-shell.vim', { 'do': 'wget -O ~/.vim/trans git.io/trans && chmod +x ~/.vim/trans' }
-Plug 'iberianpig/tig-explorer.vim'
-Plug 'chrisbra/NrrwRgn'
+" Plug 'chrisbra/NrrwRgn'
 
 Plug 'joe-skb7/cscope-maps'
 Plug 'majutsushi/tagbar'
 Plug 'vim-syntastic/syntastic'
-
-Plug 'uguu-org/vim-matrix-screensaver'
-
-"Ruby
-Plug 'tpope/vim-bundler', { 'for': 'ruby'  }
-Plug 'tpope/vim-rails', { 'for': 'ruby'  }
-Plug 'vim-ruby/vim-ruby', { 'for': 'ruby'  }
 
 "JavaScript
 Plug 'othree/yajs.vim' , { 'for': 'javascript'  }
