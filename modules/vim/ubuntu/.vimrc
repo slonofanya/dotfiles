@@ -34,36 +34,36 @@ Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-commentary'
 
-Plug 'w0rp/ale'
-let ale_fixers=['trim_whitespace']
-let vim_linter=['vint']
-let js_fixers=['eslint']
-let ts_fixers=['prettier', 'tslint']
-let b:ale_linters = {
-  \'javascript': ['eslint'],
-  \'javascript.jsx': ['eslint'],
-  \'typescript': ['tslint'],
-  \'typescript.tsx': ['tslint'],
-  \'html': ['tidy'],
-  \'vim': vim_linter
-\}
-let b:ale_fixers = {
-  \'*': ale_fixers,
-  \'vim': ale_fixers,
-  \'javascript.jsx': js_fixers,
-  \'typescript': ts_fixers,
-  \'typescript.tsx': ts_fixers,
-\}
-let g:ale_completion_enabled = 1
-let g:airline#extensions#ale#enabled = 1
-let g:ale_set_balloons=1
-let g:ale_lint_delay=0
-" nnoremap <silent> gr :ALEFindReferences<CR>
-" nnoremap <silent> gd :ALEGoToDefinitionInVSplit<CR>
-" nnoremap <silent> gD :ALEDocumentation<CR>
-" nnoremap <silent> gh :ALEHover<CR>
-set mouse=a
-set ttymouse=xterm
+" Plug 'w0rp/ale'
+" let ale_fixers=['trim_whitespace']
+" let vim_linter=['vint']
+" let js_fixers=['eslint']
+" let ts_fixers=['prettier', 'tslint']
+" let b:ale_linters = {
+"   \'javascript': ['eslint'],
+"   \'javascript.jsx': ['eslint'],
+"   \'typescript': ['tslint'],
+"   \'typescript.tsx': ['tslint'],
+"   \'html': ['tidy'],
+"   \'vim': vim_linter
+" \}
+" let b:ale_fixers = {
+"   \'*': ale_fixers,
+"   \'vim': ale_fixers,
+"   \'javascript.jsx': js_fixers,
+"   \'typescript': ts_fixers,
+"   \'typescript.tsx': ts_fixers,
+" \}
+" let g:ale_completion_enabled = 1
+" let g:airline#extensions#ale#enabled = 1
+" let g:ale_set_balloons=1
+" let g:ale_lint_delay=0
+" " nnoremap <silent> gr :ALEFindReferences<CR>
+" " nnoremap <silent> gd :ALEGoToDefinitionInVSplit<CR>
+" " nnoremap <silent> gD :ALEDocumentation<CR>
+" " nnoremap <silent> gh :ALEHover<CR>
+" set mouse=a
+" set ttymouse=xterm
 
 " Plug 'chrisbra/NrrwRgn'
 
@@ -90,6 +90,7 @@ set ttymouse=xterm
 
   Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
   set hidden
+  set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
 
   let g:LanguageClient_serverCommands = {
     \ 'javascript': js_typechecker_tcp,
@@ -180,23 +181,23 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
-function! LinterStatus() abort
-    let l:counts = ale#statusline#Count(bufnr(''))
+" function! LinterStatus() abort
+"     let l:counts = ale#statusline#Count(bufnr(''))
 
-    let l:all_errors = l:counts.error + l:counts.style_error
-    let l:all_non_errors = l:counts.total - l:all_errors
+"     let l:all_errors = l:counts.error + l:counts.style_error
+"     let l:all_non_errors = l:counts.total - l:all_errors
 
-    return l:counts.total == 0 ? 'OK' : printf(
-    \   '%dW %dE',
-    \   all_non_errors,
-    \   all_errors
-    \)
-endfunction
+"     return l:counts.total == 0 ? 'OK' : printf(
+"     \   '%dW %dE',
+"     \   all_non_errors,
+"     \   all_errors
+"     \)
+" endfunction
 
 " statusline
 :set statusline=%{fugitive#statusline()}\ %L\ %f\
 :set statusline+=%#warningmsg#
-:set statusline+=%{LinterStatus()}
+" :set statusline+=%{LinterStatus()}
 :set statusline+=\ %{ObsessionStatus()}
 :set statusline+=%*
 
