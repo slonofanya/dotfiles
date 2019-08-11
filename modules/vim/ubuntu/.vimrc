@@ -35,6 +35,14 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-commentary'
 
 " Plug 'w0rp/ale'
+" Plug 'chrisbra/NrrwRgn'
+" Plug 'VincentCordobes/vim-translate'
+
+" Plug 'joe-skb7/cscope-maps'
+" Plug 'majutsushi/tagbar'
+" Plug 'vim-syntastic/syntastic'
+
+" Plug 'w0rp/ale'
 " let ale_fixers=['trim_whitespace']
 " let vim_linter=['vint']
 " let js_fixers=['eslint']
