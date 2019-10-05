@@ -8,11 +8,14 @@ call plug#begin()
 
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'valloric/youcompleteme'
+let g:ycm_goto_buffer_command = 'vertical-split'
+nnoremap <silent> gd :leftabove vertical :YcmCompleter GoTo<CR>
+nnoremap <silent> gf :YcmCompleter GoToReferences<CR>
 
-Plug 'Shougo/deoplete.nvim'
+" Plug 'Shougo/deoplete.nvim'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
@@ -34,36 +37,17 @@ Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-commentary'
 
-" Plug 'w0rp/ale'
-" let ale_fixers=['trim_whitespace']
-" let vim_linter=['vint']
-" let js_fixers=['eslint']
-" let ts_fixers=['prettier', 'tslint']
-" let b:ale_linters = {
-"   \'javascript': ['eslint'],
-"   \'javascript.jsx': ['eslint'],
-"   \'typescript': ['tslint'],
-"   \'typescript.tsx': ['tslint'],
-"   \'html': ['tidy'],
-"   \'vim': vim_linter
-" \}
-" let b:ale_fixers = {
-"   \'*': ale_fixers,
-"   \'vim': ale_fixers,
-"   \'javascript.jsx': js_fixers,
-"   \'typescript': ts_fixers,
-"   \'typescript.tsx': ts_fixers,
-" \}
-" let g:ale_completion_enabled = 1
-" let g:airline#extensions#ale#enabled = 1
-" let g:ale_set_balloons=1
-" let g:ale_lint_delay=0
-" " nnoremap <silent> gr :ALEFindReferences<CR>
-" " nnoremap <silent> gd :ALEGoToDefinitionInVSplit<CR>
-" " nnoremap <silent> gD :ALEDocumentation<CR>
-" " nnoremap <silent> gh :ALEHover<CR>
-" set mouse=a
-" set ttymouse=xterm
+" Plug 'reedes/vim-lexical'
+" augroup lexical
+"   autocmd!
+"   autocmd FileType markdown,mkd call lexical#init()
+"   autocmd FileType textile call lexical#init()
+"   autocmd FileType text call lexical#init({ 'spell': 1 })
+" augroup END
+" let g:lexical#thesaurus = ['/home/sl/.vim/spell/thesaurus/words.txt']
+" let g:lexical#dictionary = ['/home/sl/.vim/spell/thesaurus/words.txt']
+" let g:lexical#spelllang = ['en_us']
+" let g:lexical#spell = 1
 
 " Plug 'chrisbra/NrrwRgn'
 
@@ -92,17 +76,17 @@ Plug 'tpope/vim-commentary'
   set hidden
   set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
 
-  let g:LanguageClient_serverCommands = {
-    \ 'javascript': js_typechecker_tcp,
-    \ 'javascript.jsx': js_typechecker_tcp,
-    \ 'typescript': js_typechecker_tcp,
-    \ 'typescript.tsx': js_typechecker_tcp
-  \ }
-  nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-  " " Or map each action separately
-  nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-  nnoremap <silent> gd :call LanguageClient#textDocument_definition({'gotoCmd': 'vsplit'})<CR>
-  nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+  " let g:LanguageClient_serverCommands = {
+  "   \ 'javascript': js_typechecker_tcp,
+  "   \ 'javascript.jsx': js_typechecker_tcp,
+  "   \ 'typescript': js_typechecker_tcp,
+  "   \ 'typescript.tsx': js_typechecker_tcp
+  " \ }
+  " nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+  " " " Or map each action separately
+  " nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+  " nnoremap <silent> gd :call LanguageClient#textDocument_definition({'gotoCmd': 'vsplit'})<CR>
+  " nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 "HTML
   Plug 'tpope/vim-haml', { 'for': 'haml' }
@@ -147,13 +131,14 @@ set encoding=utf-8
 
 let g:solarized_termcolors=256
 let g:mapleader=' '
-inoremap jj <Esc>
+inoremap jk <Esc>
 set background=dark
 set number
 set expandtab
 set tabstop=2
 set shiftwidth=2
-set listchars=eol:¬,tab:>-,trail:~,extends:>,precedes:<,space:·
+set listchars=eol:¬,tab:>-,trail:~,extends:>,precedes:<
+"set listchars=eol:¬,tab:>-,trail:~,extends:>,precedes:<,space: 
 set list
 set backupcopy=yes
 set clipboard=unnamedplus
@@ -237,7 +222,8 @@ nmap <Leader>b :BufExplorerVerticalSplit<CR>
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 
 " JS
-" noremap <F3> :Autoformat<CR>
+noremap <F3> :!npx tsfmt % -r<CR>
+noremap <F4> :!npx tslint -c tslint.json -p tsconfig.json --fix %<CR>
 " let g:formatdef_prettier_javascript = '"prettier"'
 " let g:loaded_matchit = 1
 

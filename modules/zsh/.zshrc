@@ -52,7 +52,7 @@ ZSH_THEME="ys"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(docker git fzf navi zsh-syntax-highlighting zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -102,28 +102,38 @@ DEFAULT_USER="sl"
 # Defer initialization of nvm until nvm, node or a node-dependent command is
 # run. Ensure this block is only run once if .bashrc gets sourced multiple times
 # by checking whether __init_nvm is a function.
-if [ -s "$HOME/.nvm/nvm.sh" ] && [ ! "$(whence -w __init_nvm)" = function ]; then
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
-  declare -a __node_commands=('nvm' 'node' 'npm' 'yarn' 'gulp' 'grunt' 'webpack')
-  function __init_nvm() {
-    for i in "${__node_commands[@]}"; do unalias $i; done
-    . "$NVM_DIR"/nvm.sh
-    unset __node_commands
-    unset -f __init_nvm
-  }
-  for i in "${__node_commands[@]}"; do alias $i='__init_nvm && '$i; done
-fi
+# if [ -s "$HOME/.nvm/nvm.sh" ] && [ ! "$(whence -w __init_nvm)" = function ]; then
+#   export NVM_DIR="$HOME/.nvm"
+#   [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+#   declare -a __node_commands=('nvm' 'node' 'npm' 'yarn' 'gulp' 'grunt' 'webpack')
+#   function __init_nvm() {
+#     for i in "${__node_commands[@]}"; do unalias $i; done
+#     . "$NVM_DIR"/nvm.sh
+#     unset __node_commands
+#     unset -f __init_nvm
+#   }
+#   for i in "${__node_commands[@]}"; do alias $i='__init_nvm && '$i; done
+# fi
+export NVM_DIR="/home/sl/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 export PATH="$PATH:$HOME/install/dotfiles/tools"
 export PATH="$PATH:$HOME/install/dotfiles/tools/ripgrep-0.6.0-x86_64-unknown-linux-musl"
 export PATH="$PATH:$HOME/app"
 export PATH="$PATH:NVM_DIR"
 
+source $HOME/install/dotfiles/tools/z/z.sh
+
 export CLICOLOR=1
 export EDITOR='vim'
 export TERM="screen-256color"
+
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+export FZF_DEFAULT_OPTS='
+  --color=dark
+  --color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe
+  --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef
+'
 
 export DB_HOST=127.0.0.1
 
