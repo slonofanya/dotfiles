@@ -55,7 +55,7 @@ sudo apt-get install python-dev python-pip python3-dev python3-pip
 sudo apt-get upgrade
 sudo apt-get dist-upgrade
 cd ${VIM_ROOT}/plugged/youcompleteme
-./install.py --clang-completer --tern-completer
+./install.py --clang-completer --tern-completer --ts-completer
 git clone https://github.com/joshdick/onedark.vim ~/install/ondark.vim
 cp ~/onedark.vim/autoload/onedark.vim ~/.vim/autoload/
 
