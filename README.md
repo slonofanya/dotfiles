@@ -27,6 +27,7 @@ git clone git@github.com:slonofanya/dotfiles.git ~/install/dotfiles
 ```
 sudo ln -s /home/sl/install/dotfiles/tools/ripgrep-0.6.0-x86_64-unknown-linux-musl/rg /usr/local/bin
 ```
+or: `sudo snap install rg`
 
 # BAT
 ```
