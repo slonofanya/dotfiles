@@ -57,7 +57,7 @@ sudo apt-get dist-upgrade
 cd ${VIM_ROOT}/plugged/youcompleteme
 ./install.py --clang-completer --tern-completer --ts-completer
 git clone https://github.com/joshdick/onedark.vim ~/install/ondark.vim
-cp ~/install/onedark.vim/autoload/onedark.vim ~/.vim/autoload/
+cp ~/install/ondark.vim/autoload/onedark.vim ~/.vim/autoload/
 
 # Typescript langserver:
 #  https://github.com/sourcegraph/javascript-typescript-langserver
