@@ -3,7 +3,7 @@ filetype off                  " required
 
 call plug#begin()
 
-Plug 'valloric/youcompleteme'
+" Plug 'valloric/youcompleteme'
 let g:ycm_goto_buffer_command = 'vertical-split'
 nnoremap <silent> gd :leftabove vertical :YcmCompleter GoTo<CR>
 nnoremap <silent> gf :YcmCompleter GoToReferences<CR>

@@ -21,6 +21,7 @@ nvm install stable
 # DOTFILES
 ```
 git clone git@github.com:slonofanya/dotfiles.git ~/install/dotfiles
+git submodule update --init --recursive
 ```
 
 # RIPGREP
@@ -40,13 +41,13 @@ https://github.com/sharkdp/bat
 export VIM_ROOT=~/.vim
 mkdir $VIM_ROOT
 ln -s ~/install/dotfiles/modules/vim/ubuntu/.vimrc ~/.vimrc
+ln -s ~/install/dotfiles/modules/vim/pack ${VIM_ROOT}/pack
 sudo add-apt-repository ppa:jonathonf/vim
 sudo apt install vim -y
 mkdir ${VIM_ROOT}/backups
 mkdir ${VIM_ROOT}/swapfiles
 mkdir ${VIM_ROOT}/session
 mkdir ${VIM_ROOT}/undodir
-ln -s ~/install/dotfiles/modules/vim/pack ${VIM_ROOT}/pack
 curl -fLo ${VIM_ROOT}/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # https://askubuntu.com/questions/575505/glibcxx-3-4-20-not-found-how-to-fix-this-error
@@ -55,8 +56,10 @@ sudo apt-get update
 sudo apt-get install python-dev python-pip python3-dev python3-pip
 sudo apt-get upgrade
 sudo apt-get dist-upgrade
-cd ${VIM_ROOT}/plugged/youcompleteme
+
+cd ${VIM_ROOT}/modules/vim/pack/vendor/start/youcompleteme
 ./install.py --clang-completer --tern-completer --ts-completer
+
 git clone https://github.com/joshdick/onedark.vim ~/install/ondark.vim
 cp ~/install/ondark.vim/autoload/onedark.vim ~/.vim/autoload/
 
