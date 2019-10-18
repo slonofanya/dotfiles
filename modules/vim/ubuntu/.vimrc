@@ -12,18 +12,13 @@ let g:ycm_goto_buffer_command = 'vertical-split'
 nnoremap <silent> gd :leftabove vertical :YcmCompleter GoTo<CR>
 nnoremap <silent> gf :YcmCompleter GoToReferences<CR>
 
-" Plug 'Shougo/deoplete.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
-" let g:deoplete#enable_at_startup = 1
-
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
-Plug 'mileszs/ack.vim'
+" Plug 'mileszs/ack.vim'
 Plug 'cohama/agit.vim'
 Plug 'flazz/vim-colorschemes'
-Plug 'danro/rename.vim'
+" Plug 'danro/rename.vim'
 Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
 Plug 'mhinz/vim-startify'
@@ -34,20 +29,8 @@ Plug 'eparreno/vim-l9'
 Plug 'vim-scripts/FuzzyFinder'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
 Plug 'jlanzarotta/bufexplorer'
-Plug 'tpope/vim-sleuth'
+" Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-commentary'
-
-" Plug 'reedes/vim-lexical'
-" augroup lexical
-"   autocmd!
-"   autocmd FileType markdown,mkd call lexical#init()
-"   autocmd FileType textile call lexical#init()
-"   autocmd FileType text call lexical#init({ 'spell': 1 })
-" augroup END
-" let g:lexical#thesaurus = ['/home/sl/.vim/spell/thesaurus/words.txt']
-" let g:lexical#dictionary = ['/home/sl/.vim/spell/thesaurus/words.txt']
-" let g:lexical#spelllang = ['en_us']
-" let g:lexical#spell = 1
 
 " Plug 'chrisbra/NrrwRgn'
 
@@ -57,36 +40,19 @@ Plug 'tpope/vim-commentary'
   vnoremap <silent> <leader>t :Trans<CR>
   vnoremap <silent> <leader>td :TransSelectDirection<CR>
 
-  Plug 'joe-skb7/cscope-maps'
-  Plug 'majutsushi/tagbar'
+  " Plug 'joe-skb7/cscope-maps'
+  " Plug 'majutsushi/tagbar'
 
 "JavaScript
-  Plug 'othree/yajs.vim' , { 'for': 'javascript'  }
-  Plug 'mxw/vim-jsx' , { 'for': 'javascript'  }
-  Plug 'jelera/vim-javascript-syntax' , { 'for': 'javascript'  }
-  Plug 'othree/javascript-libraries-syntax.vim' , { 'for': 'javascript'  }
-  Plug 'othree/es.next.syntax.vim', { 'for': 'javascript'  }
+  " Plug 'othree/yajs.vim' , { 'for': ['javascript', 'typescript']  }
+  " Plug 'mxw/vim-jsx' , { 'for': ['javascript', 'typescript']  }
+  " Plug 'othree/es.next.syntax.vim', { 'for': ['javascript', 'typescript']  }
+  " Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'typescript']  }
+  " Plug 'jelera/vim-javascript-syntax' , { 'for': 'javascript'  }
   " Plug 'Chiel92/vim-autoformat'
-  Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript'  }
-  Plug 'sickill/vim-pasta', { 'for': 'javascript'  }
-  Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'for': 'javascript'  }
-  Plug 'herringtondarkholme/yats.vim'
-
-  Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-  set hidden
-  set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
-
-  " let g:LanguageClient_serverCommands = {
-  "   \ 'javascript': js_typechecker_tcp,
-  "   \ 'javascript.jsx': js_typechecker_tcp,
-  "   \ 'typescript': js_typechecker_tcp,
-  "   \ 'typescript.tsx': js_typechecker_tcp
-  " \ }
-  " nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-  " " " Or map each action separately
-  " nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-  " nnoremap <silent> gd :call LanguageClient#textDocument_definition({'gotoCmd': 'vsplit'})<CR>
-  " nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+  " Plug 'sickill/vim-pasta', { 'for': 'javascript'  }
+  " Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'for': 'javascript'  }
+  Plug 'herringtondarkholme/yats.vim', { 'for': 'javascript'  }
 
 "HTML
   Plug 'tpope/vim-haml', { 'for': 'haml' }
@@ -105,7 +71,7 @@ Plug 'tpope/vim-commentary'
   Plug 'SirVer/ultisnips'
 
 " Snippets are separated from the engine. Add this if you want them:
-  Plug 'honza/vim-snippets'
+  " Plug 'honza/vim-snippets'
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-l>"
@@ -166,23 +132,9 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
-" function! LinterStatus() abort
-"     let l:counts = ale#statusline#Count(bufnr(''))
-
-"     let l:all_errors = l:counts.error + l:counts.style_error
-"     let l:all_non_errors = l:counts.total - l:all_errors
-
-"     return l:counts.total == 0 ? 'OK' : printf(
-"     \   '%dW %dE',
-"     \   all_non_errors,
-"     \   all_errors
-"     \)
-" endfunction
-
 " statusline
-:set statusline=%{fugitive#statusline()}\ %L\ %f\
+:set statusline=%{fugitive#statusline()}\ %f\ %L
 :set statusline+=%#warningmsg#
-" :set statusline+=%{LinterStatus()}
 :set statusline+=\ %{ObsessionStatus()}
 :set statusline+=%*
 
@@ -222,10 +174,8 @@ nmap <Leader>b :BufExplorerVerticalSplit<CR>
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 
 " JS
-noremap <F3> :!npx tsfmt % -r<CR>
+" noremap <F3> :!npx tsfmt % -r<CR>
+" noremap <F3> :Autoformat<CR>
 noremap <F4> :!npx tslint -c tslint.json -p tsconfig.json --fix %<CR>
-" let g:formatdef_prettier_javascript = '"prettier"'
-" let g:loaded_matchit = 1
 
-" let g:autoformat_remove_trailing_spaces = 1
 let g:yats_host_keyword = 1
