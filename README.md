@@ -46,6 +46,7 @@ mkdir ${VIM_ROOT}/backups
 mkdir ${VIM_ROOT}/swapfiles
 mkdir ${VIM_ROOT}/session
 mkdir ${VIM_ROOT}/undodir
+ln -s ~/install/dotfiles/modules/vim/pack ${VIM_ROOT}/pack
 curl -fLo ${VIM_ROOT}/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # https://askubuntu.com/questions/575505/glibcxx-3-4-20-not-found-how-to-fix-this-error

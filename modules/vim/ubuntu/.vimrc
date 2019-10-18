@@ -1,12 +1,8 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-let js_typechecker_stdio=["node", "/home/sl/install/javascript-typescript-langserver/lib/language-server-stdio"]
-let js_typechecker_tcp=['tcp://127.0.0.1:2089']
-
 call plug#begin()
 
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'valloric/youcompleteme'
 let g:ycm_goto_buffer_command = 'vertical-split'
 nnoremap <silent> gd :leftabove vertical :YcmCompleter GoTo<CR>
