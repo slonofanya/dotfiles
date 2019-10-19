@@ -40,7 +40,7 @@ https://github.com/sharkdp/bat
 ```
 export VIM_ROOT=~/.vim
 mkdir $VIM_ROOT
-ln -s ~/install/dotfiles/modules/vim/ubuntu/.vimrc ~/.vimrc
+ln -s ~/install/dotfiles/modules/vim/.vimrc ~/.vimrc
 ln -s ~/install/dotfiles/modules/vim/pack ${VIM_ROOT}/pack
 sudo add-apt-repository ppa:jonathonf/vim
 sudo apt install vim -y
