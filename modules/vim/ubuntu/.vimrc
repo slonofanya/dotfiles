@@ -8,7 +8,7 @@ let g:ycm_goto_buffer_command = 'vertical-split'
 nnoremap <silent> gd :leftabove vertical :YcmCompleter GoTo<CR>
 nnoremap <silent> gf :YcmCompleter GoToReferences<CR>
 
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 " Plug 'mileszs/ack.vim'
