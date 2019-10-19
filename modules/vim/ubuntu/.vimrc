@@ -3,21 +3,17 @@ filetype off                  " required
 
 call plug#begin()
 
-" Plug 'mileszs/ack.vim'
-Plug 'flazz/vim-colorschemes'
-" Plug 'danro/rename.vim'
-Plug 'tpope/vim-obsession'
-Plug 'dhruvasagar/vim-prosession'
-Plug 'mhinz/vim-startify'
-Plug 'jremmen/vim-ripgrep'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'easymotion/vim-easymotion'
-Plug 'eparreno/vim-l9'
-Plug 'vim-scripts/FuzzyFinder'
+" Plug 'tpope/vim-obsession'
+" Plug 'dhruvasagar/vim-prosession'
+" Plug 'mhinz/vim-startify'
+" Plug 'jremmen/vim-ripgrep'
+" Plug 'terryma/vim-multiple-cursors'
+" Plug 'easymotion/vim-easymotion'
+" Plug 'eparreno/vim-l9'
+" Plug 'vim-scripts/FuzzyFinder'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
-Plug 'jlanzarotta/bufexplorer'
-" Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-commentary'
+" Plug 'jlanzarotta/bufexplorer'
+" Plug 'tpope/vim-commentary'
 
 " Plug 'chrisbra/NrrwRgn'
 
