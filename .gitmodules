@@ -16,3 +16,6 @@
 [submodule "modules/vim/pack/vendor/start/agit.vim"]
 	path = modules/vim/pack/vendor/start/agit.vim
 	url = https://github.com/cohama/agit.vim.git
+[submodule "modules/vim/pack/vendor/start/vim-colorschemes"]
+	path = modules/vim/pack/vendor/start/vim-colorschemes
+	url = https://github.com/flazz/vim-colorschemes.git

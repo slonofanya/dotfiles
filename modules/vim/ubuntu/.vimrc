@@ -4,7 +4,6 @@ filetype off                  " required
 call plug#begin()
 
 " Plug 'mileszs/ack.vim'
-Plug 'cohama/agit.vim'
 Plug 'flazz/vim-colorschemes'
 " Plug 'danro/rename.vim'
 Plug 'tpope/vim-obsession'
