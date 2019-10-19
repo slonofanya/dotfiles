@@ -10,3 +10,9 @@
 [submodule "modules/vim/pack/vendor/start/auto-pairs"]
 	path = modules/vim/pack/vendor/start/auto-pairs
 	url = https://github.com/jiangmiao/auto-pairs.git
+[submodule "modules/vim/pack/vendor/start/vim-signify"]
+	path = modules/vim/pack/vendor/start/vim-signify
+	url = https://github.com/mhinz/vim-signify.git
+[submodule "modules/vim/pack/vendor/start/agit.vim"]
+	path = modules/vim/pack/vendor/start/agit.vim
+	url = https://github.com/cohama/agit.vim.git

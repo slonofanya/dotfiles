@@ -3,8 +3,6 @@ filetype off                  " required
 
 call plug#begin()
 
-" Plug 'tpope/vim-fugitive'
-Plug 'mhinz/vim-signify'
 " Plug 'mileszs/ack.vim'
 Plug 'cohama/agit.vim'
 Plug 'flazz/vim-colorschemes'
