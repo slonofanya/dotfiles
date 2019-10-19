@@ -58,3 +58,6 @@
 [submodule "modules/vim/pack/vendor/start/modules/vim/pack/vendor/start/vim-snippets"]
 	path = modules/vim/pack/vendor/start/modules/vim/pack/vendor/start/vim-snippets
 	url = https://github.com/honza/vim-snippets.git
+[submodule "modules/vim/pack/vendor/start/ultisnips"]
+	path = modules/vim/pack/vendor/start/ultisnips
+	url = https://github.com/SirVer/ultisnips.git
