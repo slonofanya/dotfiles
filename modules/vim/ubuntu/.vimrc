@@ -2,29 +2,14 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 call plug#begin()
-
-" Plug 'tpope/vim-obsession'
-" Plug 'dhruvasagar/vim-prosession'
-" Plug 'mhinz/vim-startify'
-" Plug 'jremmen/vim-ripgrep'
-" Plug 'terryma/vim-multiple-cursors'
-" Plug 'easymotion/vim-easymotion'
-" Plug 'eparreno/vim-l9'
-" Plug 'vim-scripts/FuzzyFinder'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
-" Plug 'jlanzarotta/bufexplorer'
-" Plug 'tpope/vim-commentary'
-
 " Plug 'chrisbra/NrrwRgn'
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
 
 "Translation
   Plug 'echuraev/translate-shell.vim', { 'do': 'wget -O ~/.vim/trans git.io/trans && chmod +x ~/.vim/trans' }
   let g:trans_bin = "~/.vim"
   vnoremap <silent> <leader>t :Trans<CR>
   vnoremap <silent> <leader>td :TransSelectDirection<CR>
-
-" Plug 'joe-skb7/cscope-maps'
-  " Plug 'majutsushi/tagbar'
 
   Plug 'herringtondarkholme/yats.vim', { 'for': 'javascript'  }
 
@@ -37,24 +22,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
   Plug 'groenewege/vim-less', { 'for': 'less'  }
   Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss']  }
   Plug 'wavded/vim-stylus', { 'for': 'stylus'  }"
-
-"collor chemas"
-  Plug 'morhetz/gruvbox'
-
-" Track the engine.
-  Plug 'SirVer/ultisnips'
-
-" Snippets are separated from the engine. Add this if you want them:
-  " Plug 'honza/vim-snippets'
-
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-l>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
 call plug#end()
 
 filetype plugin indent on
@@ -135,6 +102,15 @@ let g:tagbar_ctags_bin="/usr/bin/ctags"
 set tags=./tags,tags;$HOME
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+" UltiSnips
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-l>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 "Aliases
 
