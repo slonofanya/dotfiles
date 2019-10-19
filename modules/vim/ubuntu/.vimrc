@@ -3,13 +3,7 @@ filetype off                  " required
 
 call plug#begin()
 
-" Plug 'valloric/youcompleteme'
-let g:ycm_goto_buffer_command = 'vertical-split'
-nnoremap <silent> gd :leftabove vertical :YcmCompleter GoTo<CR>
-nnoremap <silent> gf :YcmCompleter GoToReferences<CR>
-
-" Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 " Plug 'mileszs/ack.vim'
 Plug 'cohama/agit.vim'
@@ -36,18 +30,9 @@ Plug 'tpope/vim-commentary'
   vnoremap <silent> <leader>t :Trans<CR>
   vnoremap <silent> <leader>td :TransSelectDirection<CR>
 
-  " Plug 'joe-skb7/cscope-maps'
+" Plug 'joe-skb7/cscope-maps'
   " Plug 'majutsushi/tagbar'
 
-"JavaScript
-  " Plug 'othree/yajs.vim' , { 'for': ['javascript', 'typescript']  }
-  " Plug 'mxw/vim-jsx' , { 'for': ['javascript', 'typescript']  }
-  " Plug 'othree/es.next.syntax.vim', { 'for': ['javascript', 'typescript']  }
-  " Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'typescript']  }
-  " Plug 'jelera/vim-javascript-syntax' , { 'for': 'javascript'  }
-  " Plug 'Chiel92/vim-autoformat'
-  " Plug 'sickill/vim-pasta', { 'for': 'javascript'  }
-  " Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'for': 'javascript'  }
   Plug 'herringtondarkholme/yats.vim', { 'for': 'javascript'  }
 
 "HTML
@@ -84,6 +69,11 @@ syntax on
 
 let g:jsx_ext_required = 0
 let g:used_javascript_libs = 'underscore,jquery,react,chai,handlebars'
+
+" Youcompleteme
+let g:ycm_goto_buffer_command = 'vertical-split'
+nnoremap <silent> gd :leftabove vertical :YcmCompleter GoTo<CR>
+nnoremap <silent> gf :YcmCompleter GoToReferences<CR>
 
 "System
 set autoread
