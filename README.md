@@ -20,8 +20,7 @@ nvm install stable
 
 # DOTFILES
 ```
-git clone git@github.com:slonofanya/dotfiles.git ~/install/dotfiles
-git submodule update --init --recursive
+git clone git@github.com:slonofanya/dotfiles.git ~/install/dotfiles --recursive
 ```
 
 # RIPGREP
@@ -57,8 +56,9 @@ sudo apt-get install python-dev python-pip python3-dev python3-pip
 sudo apt-get upgrade
 sudo apt-get dist-upgrade
 
-cd ${VIM_ROOT}/modules/vim/pack/vendor/start/youcompleteme
-./install.py --clang-completer --tern-completer --ts-completer
+cd ${VIM_ROOT}/modules/vim/pack/vendor/start/fzf/install --all
+cd ${VIM_ROOT}/modules/vim/pack/vendor/start/youcompleteme/install.py --clang-completer --tern-completer --ts-completer
+wget -O ${VIM_ROOT}trans git.io/trans && chmod +x ${VIM_ROOT}trans
 
 git clone https://github.com/joshdick/onedark.vim ~/install/ondark.vim
 cp ~/install/ondark.vim/autoload/onedark.vim ~/.vim/autoload/

@@ -49,15 +49,15 @@
 [submodule "modules/vim/pack/vendor/start/vim-commentary"]
 	path = modules/vim/pack/vendor/start/vim-commentary
 	url = https://github.com/tpope/vim-commentary.git
-[submodule "modules/vim/pack/vendor/start/modules/vim/pack/vendor/start/gruvbox"]
-	path = modules/vim/pack/vendor/start/modules/vim/pack/vendor/start/gruvbox
+[submodule "modules/vim/pack/vendor/start/ruvbox"]
+	path = modules/vim/pack/vendor/start/ruvbox
 	url = https://github.com/morhetz/gruvbox.git
-[submodule "modules/vim/pack/vendor/start/modules/vim/pack/vendor/start/ultisnips"]
-	path = modules/vim/pack/vendor/start/modules/vim/pack/vendor/start/ultisnips
-	url = https://github.com/SirVer/ultisnips.git
-[submodule "modules/vim/pack/vendor/start/modules/vim/pack/vendor/start/vim-snippets"]
-	path = modules/vim/pack/vendor/start/modules/vim/pack/vendor/start/vim-snippets
-	url = https://github.com/honza/vim-snippets.git
 [submodule "modules/vim/pack/vendor/start/ultisnips"]
 	path = modules/vim/pack/vendor/start/ultisnips
 	url = https://github.com/SirVer/ultisnips.git
+[submodule "modules/vim/pack/vendor/start/fzf"]
+	path = modules/vim/pack/vendor/start/fzf
+	url = https://github.com/junegunn/fzf.git
+[submodule "modules/vim/pack/vendor/start/translate-shell.vim"]
+	path = modules/vim/pack/vendor/start/translate-shell.vim
+	url = https://github.com/echuraev/translate-shell.vim.git

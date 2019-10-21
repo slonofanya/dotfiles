@@ -3,14 +3,6 @@ filetype off                  " required
 
 call plug#begin()
 " Plug 'chrisbra/NrrwRgn'
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
-
-"Translation
-  Plug 'echuraev/translate-shell.vim', { 'do': 'wget -O ~/.vim/trans git.io/trans && chmod +x ~/.vim/trans' }
-  let g:trans_bin = "~/.vim"
-  vnoremap <silent> <leader>t :Trans<CR>
-  vnoremap <silent> <leader>td :TransSelectDirection<CR>
-
   Plug 'herringtondarkholme/yats.vim', { 'for': 'javascript'  }
 
 "HTML
@@ -110,6 +102,11 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
 
 "Aliases
+
+"Translation
+  let g:trans_bin = "~/.vim"
+  vnoremap <silent> <leader>t :Trans<CR>
+  vnoremap <silent> <leader>td :TransSelectDirection<CR>
 
 "Tabs -> buffers
 set modifiable
