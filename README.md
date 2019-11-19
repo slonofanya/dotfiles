@@ -20,13 +20,14 @@ nvm install stable
 
 # DOTFILES
 ```
-git clone git@github.com:slonofanya/dotfiles.git ~/install/dotfiles
+git clone git@github.com:slonofanya/dotfiles.git ~/install/dotfiles --recursive
 ```
 
 # RIPGREP
 ```
 sudo ln -s /home/sl/install/dotfiles/tools/ripgrep-0.6.0-x86_64-unknown-linux-musl/rg /usr/local/bin
 ```
+or: `sudo snap install rg`
 
 # BAT
 ```
@@ -38,7 +39,8 @@ https://github.com/sharkdp/bat
 ```
 export VIM_ROOT=~/.vim
 mkdir $VIM_ROOT
-ln -s ~/install/dotfiles/modules/vim/ubuntu/.vimrc ~/.vimrc
+ln -s ~/install/dotfiles/modules/vim/.vimrc ~/.vimrc
+ln -s ~/install/dotfiles/modules/vim/pack ${VIM_ROOT}/pack
 sudo add-apt-repository ppa:jonathonf/vim
 sudo apt install vim -y
 mkdir ${VIM_ROOT}/backups
@@ -53,10 +55,13 @@ sudo apt-get update
 sudo apt-get install python-dev python-pip python3-dev python3-pip
 sudo apt-get upgrade
 sudo apt-get dist-upgrade
-cd ${VIM_ROOT}/plugged/youcompleteme
-./install.py --clang-completer --tern-completer
+
+cd ${VIM_ROOT}/modules/vim/pack/vendor/start/fzf/install --all
+cd ${VIM_ROOT}/modules/vim/pack/vendor/start/youcompleteme/install.py --clang-completer --tern-completer --ts-completer
+wget -O ${VIM_ROOT}trans git.io/trans && chmod +x ${VIM_ROOT}trans
+
 git clone https://github.com/joshdick/onedark.vim ~/install/ondark.vim
-cp ~/onedark.vim/autoload/onedark.vim ~/.vim/autoload/
+cp ~/install/ondark.vim/autoload/onedark.vim ~/.vim/autoload/
 
 # Typescript langserver:
 #  https://github.com/sourcegraph/javascript-typescript-langserver

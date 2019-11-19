@@ -1,0 +1,63 @@
+[submodule "modules/vim/pack/vendor/start/nerdtree"]
+	path = modules/vim/pack/vendor/start/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "modules/vim/pack/vendor/start/youcompleteme"]
+	path = modules/vim/pack/vendor/start/youcompleteme
+	url = https://github.com/ycm-core/YouCompleteMe.git
+[submodule "modules/vim/pack/vendor/start/vim-fugitive"]
+	path = modules/vim/pack/vendor/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule "modules/vim/pack/vendor/start/auto-pairs"]
+	path = modules/vim/pack/vendor/start/auto-pairs
+	url = https://github.com/jiangmiao/auto-pairs.git
+[submodule "modules/vim/pack/vendor/start/vim-signify"]
+	path = modules/vim/pack/vendor/start/vim-signify
+	url = https://github.com/mhinz/vim-signify.git
+[submodule "modules/vim/pack/vendor/start/agit.vim"]
+	path = modules/vim/pack/vendor/start/agit.vim
+	url = https://github.com/cohama/agit.vim.git
+[submodule "modules/vim/pack/vendor/start/vim-colorschemes"]
+	path = modules/vim/pack/vendor/start/vim-colorschemes
+	url = https://github.com/flazz/vim-colorschemes.git
+[submodule "modules/vim/pack/vendor/start/vim-obsession"]
+	path = modules/vim/pack/vendor/start/vim-obsession
+	url = https://github.com/tpope/vim-obsession.git
+[submodule "modules/vim/pack/vendor/start/vim-prosession"]
+	path = modules/vim/pack/vendor/start/vim-prosession
+	url = https://github.com/dhruvasagar/vim-prosession.git
+[submodule "modules/vim/pack/vendor/start/vim-startify"]
+	path = modules/vim/pack/vendor/start/vim-startify
+  url = https://github.com/mhinz/vim-startify.git
+[submodule "modules/vim/pack/vendor/start/vim-ripgrep"]
+	path = modules/vim/pack/vendor/start/vim-ripgrep
+	url = https://github.com/jremmen/vim-ripgrep.git
+[submodule "modules/vim/pack/vendor/start/vim-multiple-cursors"]
+	path = modules/vim/pack/vendor/start/vim-multiple-cursors
+	url = https://github.com/terryma/vim-multiple-cursors.git
+[submodule "modules/vim/pack/vendor/start/vim-easymotion"]
+	path = modules/vim/pack/vendor/start/vim-easymotion
+	url = https://github.com/easymotion/vim-easymotion.git
+[submodule "modules/vim/pack/vendor/start/vim-l9"]
+	path = modules/vim/pack/vendor/start/vim-l9
+	url = https://github.com/eparreno/vim-l9.git
+[submodule "modules/vim/pack/vendor/start/FuzzyFinder"]
+	path = modules/vim/pack/vendor/start/FuzzyFinder
+	url = https://github.com/vim-scripts/FuzzyFinder.git
+[submodule "modules/vim/pack/vendor/start/bufexplorer"]
+	path = modules/vim/pack/vendor/start/bufexplorer
+	url = https://github.com/jlanzarotta/bufexplorer.git
+[submodule "modules/vim/pack/vendor/start/vim-commentary"]
+	path = modules/vim/pack/vendor/start/vim-commentary
+	url = https://github.com/tpope/vim-commentary.git
+[submodule "modules/vim/pack/vendor/start/ruvbox"]
+	path = modules/vim/pack/vendor/start/ruvbox
+	url = https://github.com/morhetz/gruvbox.git
+[submodule "modules/vim/pack/vendor/start/ultisnips"]
+	path = modules/vim/pack/vendor/start/ultisnips
+	url = https://github.com/SirVer/ultisnips.git
+[submodule "modules/vim/pack/vendor/start/fzf"]
+	path = modules/vim/pack/vendor/start/fzf
+	url = https://github.com/junegunn/fzf.git
+[submodule "modules/vim/pack/vendor/start/translate-shell.vim"]
+	path = modules/vim/pack/vendor/start/translate-shell.vim
+	url = https://github.com/echuraev/translate-shell.vim.git

@@ -23,7 +23,7 @@ RUN ln -s /home/sl/install/dotfiles/tools/ripgrep-0.6.0-x86_64-unknown-linux-mus
 # VIM (8.1)
 
 RUN mkdir /root/.vim
-RUN ln -s /root/install/dotfiles/modules/vim/ubuntu/.vimrc /root/.vimrc
+RUN ln -s /root/install/dotfiles/modules/vim/.vimrc /root/.vimrc
 RUN mkdir /root/.vim/backups
 RUN mkdir /root/.vim/swapfiles
 RUN mkdir /root/.vim/session
