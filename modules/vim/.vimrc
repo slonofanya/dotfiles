@@ -5,6 +5,11 @@ call plug#begin()
 " Plug 'chrisbra/NrrwRgn'
   Plug 'herringtondarkholme/yats.vim', { 'for': 'javascript'  }
 
+"JavaScript
+Plug 'pangloss/vim-javascript', { 'for': 'javascript'  }
+Plug 'mxw/vim-jsx', { 'for': 'javascript'  }
+Plug 'jelera/vim-javascript-syntax' , { 'for': 'javascript'  }
+
 "HTML
   Plug 'tpope/vim-haml', { 'for': 'haml' }
 
