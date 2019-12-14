@@ -5,6 +5,17 @@ call plug#begin()
 " Plug 'chrisbra/NrrwRgn'
   Plug 'herringtondarkholme/yats.vim', { 'for': 'javascript'  }
 
+" Javascript
+  Plug 'pangloss/vim-javascript', { 'for': 'javascript'  }
+  Plug 'mxw/vim-jsx', { 'for': 'javascript'  }
+  Plug 'jelera/vim-javascript-syntax' , { 'for': 'javascript'  }
+  Plug 'gavocanov/vim-js-indent', { 'for': 'javascript'  }
+  Plug 'othree/yajs.vim', { 'for': 'javascript'  }
+  Plug 'othree/es.next.syntax.vim', { 'for': 'javascript'  }
+  Plug 'Chiel92/vim-autoformat'
+  Plug 'maksimr/vim-jsbeautify'
+  Plug 'sickill/vim-pasta', { 'for': 'javascript'  }
+
 "HTML
   Plug 'tpope/vim-haml', { 'for': 'haml' }
 
@@ -25,7 +36,8 @@ let g:used_javascript_libs = 'underscore,jquery,react,chai,handlebars'
 " Youcompleteme
 let g:ycm_goto_buffer_command = 'vertical-split'
 nnoremap <silent> gd :leftabove vertical :YcmCompleter GoTo<CR>
-nnoremap <silent> gf :YcmCompleter GoToReferences<CR>
+nnoremap <silent> gf :YcmCompleter GoTo<CR>
+" nnoremap <silent> gf :YcmCompleter GoToReferences<CR>
 
 "System
 set autoread
