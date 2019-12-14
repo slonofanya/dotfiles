@@ -65,8 +65,9 @@ source $ZSH/oh-my-zsh.sh
 
 DEFAULT_USER="sl"
 
-export NVM_DIR="/home/sl/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+export NVM_DIR="/Users/sl/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 export PATH="$PATH:$HOME/install/dotfiles/tools"
 export PATH="$PATH:$HOME/install/dotfiles/tools/ripgrep-0.6.0-x86_64-unknown-linux-musl"
