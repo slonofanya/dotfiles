@@ -13,7 +13,7 @@ mkdir ~/install
 
 # NVM
 ```
-curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh -o install_nvm.sh
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 bash install_nvm.sh
 nvm install stable
 ```
