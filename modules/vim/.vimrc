@@ -5,6 +5,14 @@ call plug#begin()
 " Plug 'chrisbra/NrrwRgn'
   Plug 'herringtondarkholme/yats.vim', { 'for': 'javascript'  }
 
+  " Plug 'camspiers/animate.vim'
+  " Plug 'camspiers/lens.vim'
+  " let g:lens#height_resize_max = 20
+  " let g:lens#height_resize_min = 5
+  " let g:lens#width_resize_max = 80
+  " let g:lens#width_resize_min = 20
+  " let g:lens#disabled_filetypes = ['nerdtree', 'fzf']
+
 " Javascript
   Plug 'pangloss/vim-javascript', { 'for': 'javascript'  }
   Plug 'mxw/vim-jsx', { 'for': 'javascript'  }
@@ -38,6 +46,7 @@ let g:ycm_goto_buffer_command = 'vertical-split'
 nnoremap <silent> gd :leftabove vertical :YcmCompleter GoTo<CR>
 nnoremap <silent> gf :YcmCompleter GoTo<CR>
 " nnoremap <silent> gf :YcmCompleter GoToReferences<CR>
+autocmd BufEnter *.tsx set filetype=typescript
 
 "System
 set autoread
@@ -57,7 +66,7 @@ set listchars=eol:¬,tab:>-,trail:~,extends:>,precedes:<
 "set listchars=eol:¬,tab:>-,trail:~,extends:>,precedes:<,space: 
 set list
 set backupcopy=yes
-set clipboard=unnamedplus
+set clipboard=unnamed
 set backspace=indent,eol,start
 set undofile
 set undodir=~/.vim/undodir
@@ -126,11 +135,12 @@ set modifiable
 " Tags
 nmap <F8> :TagbarToggle<CR>
 
-
 " FZF
 set rtp+=~/.fzf
 map <C-f> :FZF<CR>
 nmap <Leader>b :BufExplorerVerticalSplit<CR>
+map <C-g> :Git add .<CR>:Gcommit<CR>
+map <F3> :!npm run lint:fix:file %<CR>
 
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 
@@ -140,3 +150,4 @@ set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁ
 noremap <F4> :!npx tslint -c tslint.json -p tsconfig.json --fix %<CR>
 
 let g:yats_host_keyword = 1
+scriptencoding utf-8
