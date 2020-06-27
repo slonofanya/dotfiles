@@ -52,27 +52,24 @@ export VIM_ROOT=~/.vim
 mkdir $VIM_ROOT
 ln -s ~/install/dotfiles/modules/vim/.vimrc ~/.vimrc
 ln -s ~/install/dotfiles/modules/vim/pack ${VIM_ROOT}/pack
-sudo add-apt-repository ppa:jonathonf/vim
-sudo apt install vim -y
 mkdir ${VIM_ROOT}/backups
 mkdir ${VIM_ROOT}/swapfiles
 mkdir ${VIM_ROOT}/session
 mkdir ${VIM_ROOT}/undodir
+
+sudo apt install build-essential cmake python3-dev vim -y
+
 curl -fLo ${VIM_ROOT}/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-# https://askubuntu.com/questions/575505/glibcxx-3-4-20-not-found-how-to-fix-this-error
-sudo add-apt-repository ppa:ubuntu-toolchain-r/test 
-sudo apt-get update
-sudo apt-get install python-dev python-pip python3-dev python3-pip
-sudo apt-get upgrade
-sudo apt-get dist-upgrade
-
-cd ${VIM_ROOT}/pack/vendor/start/fzf/install --all
-cd ${VIM_ROOT}/pack/vendor/start/youcompleteme/install.py --clang-completer --tern-completer --ts-completer
-wget -O ${VIM_ROOT}trans git.io/trans && chmod +x ${VIM_ROOT}trans
 
 git clone https://github.com/joshdick/onedark.vim ~/install/ondark.vim
 cp ~/install/ondark.vim/autoload/onedark.vim ~/.vim/autoload/
+
+cd ${VIM_ROOT}/pack/vendor/start/fzf
+./install --all
+
+cd ${VIM_ROOT}/pack/vendor/start/youcompleteme
+./install.py --clang-completer --tern-completer --ts-completer
+wget -O ${VIM_ROOT}trans git.io/trans && chmod +x ${VIM_ROOT}trans
 
 # Typescript langserver:
 #  https://github.com/sourcegraph/javascript-typescript-langserver
