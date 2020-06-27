@@ -78,7 +78,8 @@ wget -O ${VIM_ROOT}trans git.io/trans && chmod +x ${VIM_ROOT}trans
 
 # TMUX
 ```
-sudo apt-get install automake libevent-dev libncurses-dev pkg-config -y
+sudo apt-get install automake libevent-dev libncurses-dev pkg-config bison -y
+alias yacc="bison"
 git clone https://github.com/tmux/tmux.git ~/install/tmux
 cd ~/install/tmux
 sh autogen.sh
