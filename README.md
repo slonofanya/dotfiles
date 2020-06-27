@@ -36,6 +36,15 @@ sudo snap install rg
 https://github.com/sharkdp/bat
 ```
 
+# ZSH
+```
+sudo apt-get install zsh -y
+ln -s ~/install/dotfiles/modules/zsh/.zshrc ~/.zshrc
+chmod +x ~/install/dotfiles/modules/zsh/install.sh
+~/install/dotfiles/modules/zsh/install.sh
+# restart
+chsh -s /bin/zsh
+```
 
 # VIM (8.1)
 ```
@@ -69,15 +78,6 @@ cp ~/install/ondark.vim/autoload/onedark.vim ~/.vim/autoload/
 #  https://github.com/sourcegraph/javascript-typescript-langserver
 ```
 
-# ZSH
-```
-sudo apt-get install zsh -y
-ln -s ~/install/dotfiles/modules/zsh/.zshrc ~/.zshrc
-chmod +x ~/install/dotfiles/modules/zsh/install.sh
-~/install/dotfiles/modules/zsh/install.sh
-# restart
-chsh -s /bin/zsh
-```
 
 # TMUX
 ```
