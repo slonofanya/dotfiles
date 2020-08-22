@@ -57,7 +57,7 @@ mkdir ${VIM_ROOT}/swapfiles
 mkdir ${VIM_ROOT}/session
 mkdir ${VIM_ROOT}/undodir
 
-sudo apt install build-essential cmake python-dev python3-dev vim -y
+sudo apt install build-essential cmake python3-dev vim -y
 
 curl -fLo ${VIM_ROOT}/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
@@ -68,7 +68,7 @@ cd ${VIM_ROOT}/pack/vendor/start/fzf
 ./install --all
 
 cd ${VIM_ROOT}/pack/vendor/start/youcompleteme
-./install.py --clang-completer --tern-completer --ts-completer
+python3 ./install.py --clang-completer --tern-completer --ts-completer
 wget -O ${VIM_ROOT}trans git.io/trans && chmod +x ${VIM_ROOT}trans
 
 # Typescript langserver:
