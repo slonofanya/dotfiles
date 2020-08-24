@@ -15,7 +15,7 @@ call plug#begin()
   " let g:lens#disabled_filetypes = ['nerdtree', 'fzf']
 
   Plug 'editorconfig/editorconfig-vim'
-  Plug 'wakatime/vim-wakatime'
+  " Plug 'wakatime/vim-wakatime'
 
   " Javascript
   Plug 'pangloss/vim-javascript', { 'for': 'javascript'  }

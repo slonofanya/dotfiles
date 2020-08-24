@@ -101,14 +101,17 @@ source $ZSH/oh-my-zsh.sh
 DEFAULT_USER="sl"
 
 export NVM_DIR="/$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-alias loadnvm='[ -s "$NVM_DIR/nvm.sh"  ] && . "$NVM_DIR/nvm.sh"'
-alias lnd='loadnvm && nvm use --delete-prefix stable'
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+nvm use --delete-prefix stable --silent
+#alias loadnvm='[ -s "$NVM_DIR/nvm.sh"  ] && . "$NVM_DIR/nvm.sh"'
+#alias lnd='loadnvm && nvm use --delete-prefix stable --silent'
 
 export PATH="$PATH:$HOME/install/dotfiles/tools"
 export PATH="$PATH:$HOME/install/dotfiles/tools/ripgrep-0.6.0-x86_64-unknown-linux-musl"
 export PATH="$PATH:$HOME/app"
 export PATH="$PATH:NVM_DIR"
+
+export VIM_ROOT=~/.vim
 
 source $HOME/install/dotfiles/tools/z/z.sh
 
@@ -191,7 +194,7 @@ elif type compctl &>/dev/null; then
 fi
 ###-end-npm-completion-###
 
-export DOCKER_HOST=tcp://localhost:2375
+# export DOCKER_HOST=tcp://localhost:2375
 
 alias ta='tmux a'
 alias loadbrew='/home/linuxbrew/.linuxbrew/bin/brew shellenv'
