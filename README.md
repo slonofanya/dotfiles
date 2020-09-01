@@ -11,29 +11,9 @@ sudo apt install git curl cmake nnn -y
 mkdir ~/install
 ```
 
-# NVM
-```
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-nvm install stable
-```
-
 # DOTFILES
 ```
 git clone git@github.com:slonofanya/dotfiles.git ~/install/dotfiles --recursive
-```
-
-# RIPGREP
-```
-sudo ln -s /home/sl/install/dotfiles/tools/ripgrep-0.6.0-x86_64-unknown-linux-musl/rg /usr/local/bin
-```
-or:
-```
-sudo snap install rg
-```
-
-# BAT
-```
-https://github.com/sharkdp/bat
 ```
 
 # ZSH
@@ -44,6 +24,21 @@ chmod +x ~/install/dotfiles/modules/zsh/install.sh
 ~/install/dotfiles/modules/zsh/install.sh
 # restart
 chsh -s /bin/zsh
+```
+
+# NVM
+```
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+nvm install stable
+```
+
+# RIPGREP
+```
+sudo ln -s /home/sl/install/dotfiles/tools/ripgrep-0.6.0-x86_64-unknown-linux-musl/rg /usr/local/bin
+```
+or:
+```
+sudo snap install rg
 ```
 
 # VIM (8.1)
