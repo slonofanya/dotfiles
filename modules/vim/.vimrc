@@ -2,9 +2,7 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 call plug#begin()
-" Plug 'chrisbra/NrrwRgn'
-  Plug 'herringtondarkholme/yats.vim', { 'for': 'javascript'  }
-  " Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  " Plug 'chrisbra/NrrwRgn'
 
   " Plug 'camspiers/animate.vim'
   " Plug 'camspiers/lens.vim'
@@ -18,15 +16,18 @@ call plug#begin()
   " Plug 'wakatime/vim-wakatime'
 
   " Javascript
-  Plug 'pangloss/vim-javascript', { 'for': 'javascript'  }
-  Plug 'mxw/vim-jsx', { 'for': 'javascript'  }
-  Plug 'jelera/vim-javascript-syntax' , { 'for': 'javascript'  }
-  Plug 'gavocanov/vim-js-indent', { 'for': 'javascript'  }
-  Plug 'othree/yajs.vim', { 'for': 'javascript'  }
-  Plug 'othree/es.next.syntax.vim', { 'for': 'javascript'  }
+  Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+  Plug 'gavocanov/vim-js-indent', { 'for': 'javascript' }
+  Plug 'othree/yajs.vim', { 'for': 'javascript' }
+  Plug 'herringtondarkholme/yats.vim', { 'for': 'javascript'  }
+  Plug 'othree/es.next.syntax.vim', { 'for': 'javascript' }
+  Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
+  Plug 'leafgarland/typescript-vim'
+  Plug 'peitalin/vim-jsx-typescript'
+  Plug 'herringtondarkholme/yats'
   Plug 'Chiel92/vim-autoformat'
   Plug 'maksimr/vim-jsbeautify'
-  Plug 'sickill/vim-pasta', { 'for': 'javascript'  }
+  Plug 'sickill/vim-pasta', { 'for': 'javascript' }
 
   Plug 'sbdchd/neoformat'
   let g:prettier#autoformat = 0
@@ -37,15 +38,14 @@ call plug#begin()
 "CSS/LESS/Stylus/SCSS
   Plug 'ap/vim-css-color', { 'for': ['css', 'scss', 'sass', 'less', 'stylus']  }
   Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'sass']  }
-  Plug 'groenewege/vim-less', { 'for': 'less'  }
   Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss']  }
-  Plug 'wavded/vim-stylus', { 'for': 'stylus'  }"
 call plug#end()
 
 filetype plugin indent on
 syntax on
 
-let g:jsx_ext_required = 0
+setlocal spell spelllang=en_us
+
 let g:used_javascript_libs = 'underscore,jquery,react,chai,handlebars'
 
 " Youcompleteme
@@ -53,9 +53,7 @@ let g:ycm_goto_buffer_command = 'vertical-split'
 nnoremap <silent> gd :leftabove vertical :YcmCompleter GoTo<CR>
 nnoremap <silent> gf :YcmCompleter GoTo<CR>
 " nnoremap <silent> gf :YcmCompleter GoToReferences<CR>
-autocmd BufEnter *.tsx set filetype=typescript
-autocmd BufEnter *.jsx set filetype=typescript
-autocmd BufEnter *.js set filetype=typescript
+autocmd BufEnter,BufNewFile,BufRead *.js,*.ts,*.tsx,*.jsx set filetype=typescriptreact
 
 "System
 set autoread
@@ -149,56 +147,16 @@ set rtp+=~/.fzf
 map <C-f> :FZF<CR>
 nmap <Leader>b :BufExplorerVerticalSplit<CR>
 map <C-g> :Git add .<CR>:Gcommit<CR>
-map <F3> :!npm run lint:fix:file %<CR>
+" map <F3> :!npm run lint:fix:file %<CR>
 
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 
 " JS
 " noremap <F3> :!npx tsfmt % -r<CR>
-" noremap <F3> :Autoformat<CR>
+noremap <F3> :Autoformat<CR>
 noremap <F4> :!npx tslint -c tslint.json -p tsconfig.json --fix %<CR>
 
 let g:yats_host_keyword = 1
 scriptencoding utf-8
 
 set pastetoggle=<F2>
-
-" " COC
-"   set hidden
-"   set nobackup
-"   set nowritebackup
-"   set cmdheight=2
-"   set updatetime=300
-"   set shortmess+=c
-"   set signcolumn=yes
-
-" " Use tab for trigger completion with characters ahead and navigate.
-" " " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped
-" " by
-"   " " other plugin before putting this into your config.
-"   inoremap <silent><expr> <TAB>
-"         \ pumvisible() ? "\<C-n>" :
-"         \ <SID>check_back_space() ? "\<TAB>" :
-"         \ coc#refresh()
-"   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-" " GoTo code navigation.
-"   nmap <silent> gd <Plug>(coc-definition)
-"   nmap <silent> gy <Plug>(coc-type-definition)
-"   nmap <silent> gi <Plug>(coc-implementation)
-"   nmap <silent> gr <Plug>(coc-references)
-
-" " Use K to show documentation in preview window.
-" 	nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-" 	function! s:show_documentation()
-" 		if (index(['vim','help'], &filetype) >= 0)
-" 			execute 'h '.expand('<cword>')
-" 		else
-" 			call CocAction('doHover')
-" 		endif
-" 	endfunction
-
-" " Highlight the symbol and its references when holding the cursor.
-" 	autocmd CursorHold * silent call CocActionAsync('highlight')
-

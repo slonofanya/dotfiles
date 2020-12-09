@@ -216,4 +216,5 @@ zstyle ':completion::complete:n-kill::bits' matcher 'r:|=** l:|=*'
 ### END ###
 
 export DISPLAY=localhost:0.0
+export FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT=1
 
