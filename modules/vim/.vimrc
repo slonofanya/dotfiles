@@ -31,6 +31,7 @@ call plug#begin()
 
   Plug 'sbdchd/neoformat'
   let g:prettier#autoformat = 0
+  autocmd BufWritePre,TextChanged,InsertLeave *.js Neoformat
 
 "HTML
   Plug 'tpope/vim-haml', { 'for': 'haml' }
@@ -53,6 +54,7 @@ let g:ycm_goto_buffer_command = 'vertical-split'
 nnoremap <silent> gd :leftabove vertical :YcmCompleter GoTo<CR>
 nnoremap <silent> gf :YcmCompleter GoTo<CR>
 " nnoremap <silent> gf :YcmCompleter GoToReferences<CR>
+" autocmd BufEnter,BufNewFile,BufRead *.js,*.ts,*.tsx,*.jsx set filetype=typescript
 autocmd BufEnter,BufNewFile,BufRead *.js,*.ts,*.tsx,*.jsx set filetype=typescriptreact
 
 "System
