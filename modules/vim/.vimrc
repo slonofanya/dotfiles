@@ -28,10 +28,24 @@ call plug#begin()
   Plug 'Chiel92/vim-autoformat'
   Plug 'maksimr/vim-jsbeautify'
   Plug 'sickill/vim-pasta', { 'for': 'javascript' }
+  Plug 'styled-components/vim-styled-components', { 'branch': 'main'  }
 
-  Plug 'sbdchd/neoformat'
-  let g:prettier#autoformat = 0
-  autocmd BufWritePre,TextChanged,InsertLeave *.js Neoformat
+  Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+  " autocmd BufWritePre,TextChanged,InsertLeave *.js PrettierAsync
+  " au FileType js,javascript let b:prettier_exec_cmd = "prettier-eslint"
+  autocmd BufWritePre *.js PrettierAsync
+  nmap <F3> <Plug>(PrettierAsync)
+
+  " Plug 'sbdchd/neoformat'
+  " let g:prettier#autoformat = 0
+  " let g:neoformat_try_formatprg = 0
+  " let g:neoformat_enabled_javascript = ['prettier-eslint-cli']
+  " let g:neoformat_run_all_formatters = 1
+  " autocmd BufWritePre,TextChanged,InsertLeave *.js Neoformat
+
+  Plug 'preservim/nerdcommenter'
 
 "HTML
   Plug 'tpope/vim-haml', { 'for': 'haml' }
@@ -56,6 +70,11 @@ nnoremap <silent> gf :YcmCompleter GoTo<CR>
 " nnoremap <silent> gf :YcmCompleter GoToReferences<CR>
 " autocmd BufEnter,BufNewFile,BufRead *.js,*.ts,*.tsx,*.jsx set filetype=typescript
 autocmd BufEnter,BufNewFile,BufRead *.js,*.ts,*.tsx,*.jsx set filetype=typescriptreact
+" au FileType typescriptreact setlocal comments-=:// comments+=f://
+autocmd FileType typescriptreact,typescript,javascript setlocal commentstring=//\ %s
+com! FormatJSON %!jq .
+autocmd BufWritePre *.json :FormatJSON
+" autocmd FileType json autocmd BufWritePre <buffer> %!jq '.' > /dev/null || echo <buffer>
 
 "System
 set autoread
@@ -155,8 +174,8 @@ set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁ
 
 " JS
 " noremap <F3> :!npx tsfmt % -r<CR>
-noremap <F3> :Autoformat<CR>
-noremap <F4> :!npx tslint -c tslint.json -p tsconfig.json --fix %<CR>
+" noremap <F3> :Autoformat<CR>
+" noremap <F4> :!npx tslint -c tslint.json -p tsconfig.json --fix %<CR>
 
 let g:yats_host_keyword = 1
 scriptencoding utf-8

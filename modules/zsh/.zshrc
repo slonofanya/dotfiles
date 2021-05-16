@@ -100,7 +100,7 @@ source $ZSH/oh-my-zsh.sh
 
 DEFAULT_USER="sl"
 
-export NVM_DIR="/$HOME/.nvm"
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 nvm use --delete-prefix stable --silent
 #alias loadnvm='[ -s "$NVM_DIR/nvm.sh"  ] && . "$NVM_DIR/nvm.sh"'
@@ -215,6 +215,14 @@ setopt AUTO_PUSHD HIST_IGNORE_DUPS PUSHD_IGNORE_DUPS
 zstyle ':completion::complete:n-kill::bits' matcher 'r:|=** l:|=*'
 ### END ###
 
-export DISPLAY=localhost:0.0
+# tools
+alias fs=df -h
+
+export DISPLAY=:0
 export FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT=1
 
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools

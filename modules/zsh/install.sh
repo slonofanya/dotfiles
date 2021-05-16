@@ -10,6 +10,9 @@ git clone https://github.com/denisidoro/navi.git $ZSH_PLUGINS/navi
 git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_PLUGINS/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_PLUGINS/zsh-syntax-highlighting
 
+echo "Adding fzf install directory"
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+
 chsh -s `which zsh`
 echo "Please restart... 'sudo shutdown -r 0'"
 
