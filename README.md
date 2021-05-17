@@ -2,18 +2,33 @@
 
 ## Prerequisites:
   - ubuntu
-
-```
-sudo add-apt-repository ppa:twodopeshaggy/jarun
-sudo apt-get update
-
-sudo apt install git curl cmake nnn -y
-mkdir ~/install
-```
+  - python3
+  - pip3
 
 # DOTFILES
 ```
+sudo add-apt-repository ppa:twodopeshaggy/jarun
+sudo apt update
+sudo apt install git curl -y
+mkdir ~/install
 git clone git@github.com:slonofanya/dotfiles.git ~/install/dotfiles --recursive
+```
+
+# Ansible
+
+## Install dependencies
+```
+# Setup ssh without password
+sudo visudo
+  # Add this line to end
+  #sl      ALL=(ALL:ALL) NOPASSWD:ALL
+
+pip install ansible
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 2
+ssh-copy-id -i $HOME/.ssh/id_rsa.pub $USER@localhost
+
+cd ~/install/dotfiles/modules/ansible
+ansible-playbook -i hosts playbook.yml
 ```
 
 # ZSH
