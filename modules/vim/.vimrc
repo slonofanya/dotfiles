@@ -2,7 +2,23 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 call plug#begin()
-" Plug 'chrisbra/NrrwRgn'
+  " Plug 'chrisbra/NrrwRgn'
+
+  " Plug 'camspiers/animate.vim'
+  " Plug 'camspiers/lens.vim'
+  " let g:lens#height_resize_max = 20
+  " let g:lens#height_resize_min = 5
+  " let g:lens#width_resize_max = 80
+  " let g:lens#width_resize_min = 20
+  " let g:lens#disabled_filetypes = ['nerdtree', 'fzf']
+
+  Plug 'editorconfig/editorconfig-vim'
+  " Plug 'wakatime/vim-wakatime'
+
+  " Javascript
+  Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+  Plug 'gavocanov/vim-js-indent', { 'for': 'javascript' }
+  Plug 'othree/yajs.vim', { 'for': 'javascript' }
   Plug 'herringtondarkholme/yats.vim', { 'for': 'javascript'  }
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -13,6 +29,32 @@ call plug#begin()
 
   Plug 'retorillo/istanbul.vim'
   Plug 'retorillo/json-ponyfill.vim'
+  Plug 'othree/es.next.syntax.vim', { 'for': 'javascript' }
+  Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
+  Plug 'leafgarland/typescript-vim'
+  Plug 'peitalin/vim-jsx-typescript'
+  Plug 'herringtondarkholme/yats'
+  Plug 'Chiel92/vim-autoformat'
+  Plug 'maksimr/vim-jsbeautify'
+  Plug 'sickill/vim-pasta', { 'for': 'javascript' }
+  Plug 'styled-components/vim-styled-components', { 'branch': 'main'  }
+
+  Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+  " autocmd BufWritePre,TextChanged,InsertLeave *.js PrettierAsync
+  " au FileType js,javascript let b:prettier_exec_cmd = "prettier-eslint"
+  autocmd BufWritePre *.js PrettierAsync
+  nmap <F3> <Plug>(PrettierAsync)
+
+  " Plug 'sbdchd/neoformat'
+  " let g:prettier#autoformat = 0
+  " let g:neoformat_try_formatprg = 0
+  " let g:neoformat_enabled_javascript = ['prettier-eslint-cli']
+  " let g:neoformat_run_all_formatters = 1
+  " autocmd BufWritePre,TextChanged,InsertLeave *.js Neoformat
+
+  Plug 'preservim/nerdcommenter'
 
 "HTML
   Plug 'tpope/vim-haml', { 'for': 'haml' }
@@ -20,23 +62,30 @@ call plug#begin()
 "CSS/LESS/Stylus/SCSS
   Plug 'ap/vim-css-color', { 'for': ['css', 'scss', 'sass', 'less', 'stylus']  }
   Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'sass']  }
-  Plug 'groenewege/vim-less', { 'for': 'less'  }
   Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss']  }
-  Plug 'wavded/vim-stylus', { 'for': 'stylus'  }"
 call plug#end()
 
 filetype plugin indent on
 syntax on
 
-let g:jsx_ext_required = 0
+setlocal spell spelllang=en_us
+
 let g:used_javascript_libs = 'underscore,jquery,react,chai,handlebars'
 
 let g:istanbul#jsonPath = ['coverage/coverage.json', 'coverage/coverage-final.json']
 
 " Youcompleteme
-" let g:ycm_goto_buffer_command = 'vertical-split'
-" nnoremap <silent> gd :leftabove vertical :YcmCompleter GoTo<CR>
+let g:ycm_goto_buffer_command = 'vertical-split'
+nnoremap <silent> gd :leftabove vertical :YcmCompleter GoTo<CR>
+nnoremap <silent> gf :YcmCompleter GoTo<CR>
 " nnoremap <silent> gf :YcmCompleter GoToReferences<CR>
+" autocmd BufEnter,BufNewFile,BufRead *.js,*.ts,*.tsx,*.jsx set filetype=typescript
+autocmd BufEnter,BufNewFile,BufRead *.js,*.ts,*.tsx,*.jsx set filetype=typescriptreact
+" au FileType typescriptreact setlocal comments-=:// comments+=f://
+autocmd FileType typescriptreact,typescript,javascript setlocal commentstring=//\ %s
+com! FormatJSON %!jq .
+autocmd BufWritePre *.json :FormatJSON
+" autocmd FileType json autocmd BufWritePre <buffer> %!jq '.' > /dev/null || echo <buffer>
 
 "System
 set autoread
@@ -125,18 +174,19 @@ set modifiable
 " Tags
 nmap <F8> :TagbarToggle<CR>
 
-
 " FZF
 set rtp+=~/.fzf
 map <C-f> :FZF<CR>
 nmap <Leader>b :BufExplorerVerticalSplit<CR>
+map <C-g> :Git add .<CR>:Gcommit<CR>
+" map <F3> :!npm run lint:fix:file %<CR>
 
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 
 " JS
 " noremap <F3> :!npx tsfmt % -r<CR>
 " noremap <F3> :Autoformat<CR>
-noremap <F4> :!npx tslint -c tslint.json -p tsconfig.json --fix %<CR>
+" noremap <F4> :!npx tslint -c tslint.json -p tsconfig.json --fix %<CR>
 
 let g:yats_host_keyword = 1
 
@@ -163,3 +213,6 @@ endfunction
   nmap <silent> gi <Plug>(coc-implementation)
   nmap <silent> gr <Plug>(coc-references)
 
+scriptencoding utf-8
+
+set pastetoggle=<F2>
