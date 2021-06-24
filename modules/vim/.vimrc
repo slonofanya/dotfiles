@@ -4,11 +4,15 @@ filetype off                  " required
 call plug#begin()
 " Plug 'chrisbra/NrrwRgn'
   Plug 'herringtondarkholme/yats.vim', { 'for': 'javascript'  }
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 "JavaScript
-Plug 'pangloss/vim-javascript', { 'for': 'javascript'  }
-Plug 'mxw/vim-jsx', { 'for': 'javascript'  }
-Plug 'jelera/vim-javascript-syntax' , { 'for': 'javascript'  }
+  Plug 'pangloss/vim-javascript', { 'for': 'javascript'  }
+  Plug 'mxw/vim-jsx', { 'for': 'javascript'  }
+  Plug 'jelera/vim-javascript-syntax' , { 'for': 'javascript'  }
+
+  Plug 'retorillo/istanbul.vim'
+  Plug 'retorillo/json-ponyfill.vim'
 
 "HTML
   Plug 'tpope/vim-haml', { 'for': 'haml' }
@@ -27,10 +31,12 @@ syntax on
 let g:jsx_ext_required = 0
 let g:used_javascript_libs = 'underscore,jquery,react,chai,handlebars'
 
+let g:istanbul#jsonPath = ['coverage/coverage.json', 'coverage/coverage-final.json']
+
 " Youcompleteme
-let g:ycm_goto_buffer_command = 'vertical-split'
-nnoremap <silent> gd :leftabove vertical :YcmCompleter GoTo<CR>
-nnoremap <silent> gf :YcmCompleter GoToReferences<CR>
+" let g:ycm_goto_buffer_command = 'vertical-split'
+" nnoremap <silent> gd :leftabove vertical :YcmCompleter GoTo<CR>
+" nnoremap <silent> gf :YcmCompleter GoToReferences<CR>
 
 "System
 set autoread
@@ -50,7 +56,7 @@ set listchars=eol:¬,tab:>-,trail:~,extends:>,precedes:<
 "set listchars=eol:¬,tab:>-,trail:~,extends:>,precedes:<,space: 
 set list
 set backupcopy=yes
-set clipboard=unnamedplus
+set clipboard=unnamed
 set backspace=indent,eol,start
 set undofile
 set undodir=~/.vim/undodir
@@ -133,3 +139,27 @@ set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁ
 noremap <F4> :!npx tslint -c tslint.json -p tsconfig.json --fix %<CR>
 
 let g:yats_host_keyword = 1
+
+" neoclide/coc.nvim
+
+set pastetoggle=<F2>
+
+set cmdheight=2
+set updatetime=300
+set shortmess+=c
+set signcolumn=yes
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+" Remap keys for gotos
+  nmap <silent> gd <Plug>(coc-definition)
+  nmap <silent> gy <Plug>(coc-type-definition)
+  nmap <silent> gi <Plug>(coc-implementation)
+  nmap <silent> gr <Plug>(coc-references)
+
