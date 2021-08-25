@@ -73,12 +73,13 @@ curl -fLo ${VIM_ROOT}/autoload/plug.vim --create-dirs https://raw.githubusercont
 
 git clone https://github.com/joshdick/onedark.vim ~/install/ondark.vim
 cp ~/install/ondark.vim/autoload/onedark.vim ~/.vim/autoload/
+cp ~/install/ondark.vim/colors ~/.vim/autoload/
 
 cd ${VIM_ROOT}/pack/vendor/start/fzf
 ./install --all
 
 cd ${VIM_ROOT}/pack/vendor/start/youcompleteme
-python3 ./install.py --clang-completer --tern-completer --ts-completer
+python3 ./install.py --clangd-completer --tern-completer --ts-completer
 wget -O ${VIM_ROOT}trans git.io/trans && chmod +x ${VIM_ROOT}trans
 
 # Typescript langserver:
