@@ -53,7 +53,7 @@ sudo ln -s /home/sl/install/dotfiles/tools/ripgrep-0.6.0-x86_64-unknown-linux-mu
 ```
 or:
 ```
-sudo snap install rg
+sudo snap install rg-ripgrep
 ```
 
 # VIM (8.1)
