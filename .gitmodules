@@ -58,3 +58,6 @@
 [submodule "modules/vim/pack/vendor/start/translate-shell.vim"]
 	path = modules/vim/pack/vendor/start/translate-shell.vim
 	url = https://github.com/echuraev/translate-shell.vim.git
+[submodule "modules/vim/pack/vendor/start/youcompleteme"]
+	path = modules/vim/pack/vendor/start/youcompleteme
+	url = https://github.com/tabnine/YouCompleteMe.git
