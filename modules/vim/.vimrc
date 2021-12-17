@@ -169,6 +169,7 @@ map <C-f> :FZF<CR>
 nmap <Leader>b :BufExplorerVerticalSplit<CR>
 map <C-g> :Git add .<CR>:Git commit<CR>
 :command Gc Git commit
+:command Gpull Git pull
 :command Gp Git push
 :command Gpn Git push -u origin HEAD
 " map <F3> :!npm run lint:fix:file %<CR>
