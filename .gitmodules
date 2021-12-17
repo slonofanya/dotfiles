@@ -1,9 +1,6 @@
 [submodule "modules/vim/pack/vendor/start/nerdtree"]
 	path = modules/vim/pack/vendor/start/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
-[submodule "modules/vim/pack/vendor/start/youcompleteme"]
-	path = modules/vim/pack/vendor/start/youcompleteme
-	url = https://github.com/ycm-core/YouCompleteMe.git
 [submodule "modules/vim/pack/vendor/start/vim-fugitive"]
 	path = modules/vim/pack/vendor/start/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
@@ -61,3 +58,6 @@
 [submodule "modules/vim/pack/vendor/start/translate-shell.vim"]
 	path = modules/vim/pack/vendor/start/translate-shell.vim
 	url = https://github.com/echuraev/translate-shell.vim.git
+[submodule "modules/vim/pack/vendor/start/youcompleteme"]
+	path = modules/vim/pack/vendor/start/youcompleteme
+	url = https://github.com/tabnine/YouCompleteMe.git

@@ -167,7 +167,10 @@ nmap <F8> :TagbarToggle<CR>
 set rtp+=~/.fzf
 map <C-f> :FZF<CR>
 nmap <Leader>b :BufExplorerVerticalSplit<CR>
-map <C-g> :Git add .<CR>:Gcommit<CR>
+map <C-g> :Git add .<CR>:Git commit<CR>
+:command Gc Git commit
+:command Gp Git push
+:command Gpn Git push -u origin HEAD
 " map <F3> :!npm run lint:fix:file %<CR>
 
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
