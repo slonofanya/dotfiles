@@ -73,8 +73,9 @@ curl -fLo ${VIM_ROOT}/autoload/plug.vim --create-dirs https://raw.githubusercont
 
 git clone https://github.com/joshdick/onedark.vim ~/install/ondark.vim
 cp ~/install/ondark.vim/autoload/onedark.vim ~/.vim/autoload/
-cp ~/install/ondark.vim/colors ~/.vim/autoload/
+cp -r ~/install/ondark.vim/colors ~/.vim/autoload/
 
+mkdir ~/.z
 cd ${VIM_ROOT}/pack/vendor/start/fzf
 ./install --all
 
