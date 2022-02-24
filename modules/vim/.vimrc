@@ -22,8 +22,6 @@ call plug#begin()
   Plug 'herringtondarkholme/yats.vim', { 'for': 'javascript'  }
   Plug 'othree/es.next.syntax.vim', { 'for': 'javascript' }
   Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
-  Plug 'leafgarland/typescript-vim'
-  Plug 'peitalin/vim-jsx-typescript'
   Plug 'herringtondarkholme/yats'
   Plug 'Chiel92/vim-autoformat'
   Plug 'maksimr/vim-jsbeautify'
@@ -35,7 +33,7 @@ call plug#begin()
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
   " autocmd BufWritePre,TextChanged,InsertLeave *.js PrettierAsync
   " au FileType js,javascript let b:prettier_exec_cmd = "prettier-eslint"
-  autocmd BufWritePre *.js PrettierAsync
+  autocmd BufWritePre *.[j|t]s PrettierAsync
   nmap <F3> <Plug>(PrettierAsync)
 
   " Plug 'sbdchd/neoformat'
@@ -167,7 +165,11 @@ nmap <F8> :TagbarToggle<CR>
 set rtp+=~/.fzf
 map <C-f> :FZF<CR>
 nmap <Leader>b :BufExplorerVerticalSplit<CR>
-map <C-g> :Git add .<CR>:Gcommit<CR>
+map <C-g> :Git add .<CR>:Git commit<CR>
+:command Gc Git commit
+:command Gpull Git pull
+:command Gp Git push
+:command Gpn Git push -u origin HEAD
 " map <F3> :!npm run lint:fix:file %<CR>
 
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>

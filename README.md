@@ -53,7 +53,7 @@ sudo ln -s /home/sl/install/dotfiles/tools/ripgrep-0.6.0-x86_64-unknown-linux-mu
 ```
 or:
 ```
-sudo snap install rg
+sudo snap install rg-ripgrep
 ```
 
 # VIM (8.1)
@@ -73,8 +73,9 @@ curl -fLo ${VIM_ROOT}/autoload/plug.vim --create-dirs https://raw.githubusercont
 
 git clone https://github.com/joshdick/onedark.vim ~/install/ondark.vim
 cp ~/install/ondark.vim/autoload/onedark.vim ~/.vim/autoload/
-cp ~/install/ondark.vim/colors ~/.vim/autoload/
+cp -r ~/install/ondark.vim/colors ~/.vim/autoload/
 
+mkdir ~/.z
 cd ${VIM_ROOT}/pack/vendor/start/fzf
 ./install --all
 
