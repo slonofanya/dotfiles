@@ -12,6 +12,8 @@ call plug#begin()
   " let g:lens#width_resize_min = 20
   " let g:lens#disabled_filetypes = ['nerdtree', 'fzf']
 
+  Plug 'joshdick/onedark.vim'
+
   Plug 'editorconfig/editorconfig-vim'
   " Plug 'wakatime/vim-wakatime'
 
