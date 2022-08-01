@@ -16,6 +16,8 @@ call plug#begin()
 
   Plug 'editorconfig/editorconfig-vim'
   " Plug 'wakatime/vim-wakatime'
+  Plug 'tpope/vim-fugitive'
+  Plug 'jremmen/vim-ripgrep'
 
   " Javascript
   Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
