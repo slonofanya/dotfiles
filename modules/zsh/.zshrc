@@ -201,7 +201,7 @@ alias loadbrew='/home/linuxbrew/.linuxbrew/bin/brew shellenv'
 alias python=python3
 alias pip=pip3
 
-source ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 ### ZNT's installer added snippet ###
 fpath=( "$fpath[@]" "$HOME/.config/znt/zsh-navigation-tools" )
@@ -229,3 +229,5 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+eval $(/opt/homebrew/bin/brew shellenv)
