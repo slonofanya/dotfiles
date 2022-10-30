@@ -57,24 +57,36 @@ local source_mapping = {
 
 cmp.setup({
   mapping = cmp.mapping.preset.insert({
-    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-u>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ["<Tab>"] = cmp.mapping(function(fallback)
+    ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+    ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    ['<C-y>'] = cmp.config.disable,
+    ['<C-e>'] = cmp.mapping({
+      i = cmp.mapping.abort(),
+      c = cmp.mapping.close()
+    }),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
-        cmp.mapping.select_next_item()
+        cmp.select_next_item()
+      elseif vim.fn["vsnip#available"](1) then
+        vim.fn.feedkeys(t('<Plug>(vsnip-expand-or-jump)', ''))
       else
         fallback()
       end
-    end, { "i" }),
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
+    end, {
+      "i",
+      "s"
+    }),
+    ['<S-Tab>'] = function(fallback)
       if cmp.visible() then
-        cmp.mapping.select_prev_item()
+        cmp.select_prev_item()
+      elseif vim.fn["vsnip#jumpable"](-1) then
+        vim.fn.feedkeys(t('<Plug>(vsnip-jump-prev)', ''))
       else
         fallback()
       end
-    end, { "i" })
+    end,
   }),
   formatting = {
     format = function(entry, vim_item)
