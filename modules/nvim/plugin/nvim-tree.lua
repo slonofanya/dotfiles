@@ -22,7 +22,4 @@ return require("nvim-tree").setup({
     enable = true,
     update_root = true
   },
-
-  -- open_on_setup = false,
-  -- disable_netrw: true
 })

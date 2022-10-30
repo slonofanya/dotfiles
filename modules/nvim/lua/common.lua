@@ -25,11 +25,7 @@ o.autowrite = true
 o.undodir = os.getenv('HOME') .. '/.vim/undodir'
 o.swapfile = false
 o.backup = false
--- o.signcolumn = 'yes'
 
 o.list = true
 o.listchars = {eol = '↲', tab = '▸ ', trail = '·'}
 o.langmap = 'ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;\'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>'
-
-o.guifont='DroidSansMono_Nerd_Font:h14'
-g.webdevicons_enable = 1
