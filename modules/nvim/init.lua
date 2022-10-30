@@ -1,0 +1,5 @@
+require('plugins')
+require('funtions')
+require('common')
+require('lsp')
+require('colorscheme')

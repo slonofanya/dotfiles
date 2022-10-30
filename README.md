@@ -69,6 +69,9 @@ mkdir ${VIM_ROOT}/undodir
 
 sudo apt install build-essential cmake python3-dev vim -y
 
+// Install cargo and rust
+curl https://sh.rustup.rs -sSf | sh
+
 curl -fLo ${VIM_ROOT}/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 git clone https://github.com/joshdick/onedark.vim ~/install/ondark.vim
@@ -80,7 +83,7 @@ cd ${VIM_ROOT}/pack/vendor/start/fzf
 ./install --all
 
 cd ${VIM_ROOT}/pack/vendor/start/youcompleteme
-python3 ./install.py --clang-completer --system-libclang --tern-completer --ts-completer
+python3 ./install.py --clang-completer --system-libclang --ts-completer
 wget -O ${VIM_ROOT}trans git.io/trans && chmod +x ${VIM_ROOT}trans
 
 # Typescript langserver:

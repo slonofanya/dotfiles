@@ -18,6 +18,7 @@ call plug#begin()
   " Plug 'wakatime/vim-wakatime'
   Plug 'tpope/vim-fugitive'
   Plug 'jremmen/vim-ripgrep'
+  Plug 'liuchengxu/vim-clap'
 
   " Javascript
   Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
@@ -37,8 +38,9 @@ call plug#begin()
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
   " autocmd BufWritePre,TextChanged,InsertLeave *.js PrettierAsync
   " au FileType js,javascript let b:prettier_exec_cmd = "prettier-eslint"
-  autocmd BufWritePre *.[j|t]s PrettierAsync
-  nmap <F3> <Plug>(PrettierAsync)
+  " autocmd BufWritePre *.[j|t]s PrettierAsync
+  " nmap <F3> <Plug>(PrettierAsync)
+  nmap <F3> :!npx prettier -w %<CR>
 
   " Plug 'sbdchd/neoformat'
   " let g:prettier#autoformat = 0
@@ -56,6 +58,10 @@ call plug#begin()
   Plug 'ap/vim-css-color', { 'for': ['css', 'scss', 'sass', 'less', 'stylus']  }
   Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'sass']  }
   Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss']  }
+
+" Ruby
+  " Plug 'jayli/vim-easycomplete'
+  " Plug 'SirVer/ultisnips'
 call plug#end()
 
 filetype plugin indent on
@@ -69,13 +75,15 @@ let g:used_javascript_libs = 'underscore,jquery,react,chai,handlebars'
 let g:ycm_goto_buffer_command = 'vertical-split'
 nnoremap <silent> gd :leftabove vertical :YcmCompleter GoTo<CR>
 nnoremap <silent> gf :YcmCompleter GoTo<CR>
+" autocmd FileType ruby nnoremap <silent> gd :EasyCompleteGotoDefinition<CR>
+
 " nnoremap <silent> gf :YcmCompleter GoToReferences<CR>
 " autocmd BufEnter,BufNewFile,BufRead *.js,*.ts,*.tsx,*.jsx set filetype=typescript
-autocmd BufEnter,BufNewFile,BufRead *.js,*.ts,*.tsx,*.jsx set filetype=typescriptreact
+autocmd BufEnter,BufNewFile,BufRead *.js,*.ts,*.tsx,*.jsx set filetype=typescript.typescriptreact
 " au FileType typescriptreact setlocal comments-=:// comments+=f://
 autocmd FileType typescriptreact,typescript,javascript setlocal commentstring=//\ %s
 com! FormatJSON %!jq .
-autocmd BufWritePre *.json :FormatJSON
+" autocmd BufWritePre *.json :FormatJSON
 " autocmd FileType json autocmd BufWritePre <buffer> %!jq '.' > /dev/null || echo <buffer>
 
 "System
@@ -170,18 +178,8 @@ set rtp+=~/.fzf
 map <C-f> :FZF<CR>
 nmap <Leader>b :BufExplorerVerticalSplit<CR>
 map <C-g> :Git add .<CR>:Git commit<CR>
-:command Gc Git commit
-:command Gpull Git pull
-:command Gp Git push
-:command Gpn Git push -u origin HEAD
-" map <F3> :!npm run lint:fix:file %<CR>
 
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
-
-" JS
-" noremap <F3> :!npx tsfmt % -r<CR>
-" noremap <F3> :Autoformat<CR>
-" noremap <F4> :!npx tslint -c tslint.json -p tsconfig.json --fix %<CR>
 
 let g:yats_host_keyword = 1
 scriptencoding utf-8
