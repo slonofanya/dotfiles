@@ -116,7 +116,7 @@ export VIM_ROOT=~/.vim
 source $HOME/install/dotfiles/tools/z/z.sh
 
 export CLICOLOR=1
-export EDITOR='vim'
+export EDITOR='nvim'
 export TERM="screen-256color"
 
 export FZF_BASE="$HOME/.fzf"
