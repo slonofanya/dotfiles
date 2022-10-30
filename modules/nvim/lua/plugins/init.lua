@@ -28,6 +28,7 @@ return require('packer').startup(function(use)
       require('plugins.treesitter')
     end
   }
+  use "lukas-reineke/lsp-format.nvim"
 
   use {
     'L3MON4D3/LuaSnip',
@@ -66,6 +67,18 @@ return require('packer').startup(function(use)
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
     requires = { 'nvim-lua/plenary.nvim' }
+  }
+
+  use {
+    'tanvirtin/vgit.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim'
+    }
+  }
+
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
 
   if packer_bootstrap then
