@@ -2,13 +2,10 @@ local map = vim.keymap.set
 local opts = { noremap=true, silent=true }
 
 local lspconfig = require('lspconfig')
--- local util = require('lspconfig/util')
 local goToPreview = require('goto-preview')
 
--- удалить ошибки диагностики в левом столбце (SignColumn)
-vim.diagnostic.config({signs=false})
+-- vim.diagnostic.config({signs=false})
 
--- стандартные горячие клавиши для работы с диагностикой
 map('n', '<leader>e', vim.diagnostic.open_float, opts)
 map('n', '[d', vim.diagnostic.goto_prev, opts)
 map('n', ']d', vim.diagnostic.goto_next, opts)
@@ -19,8 +16,6 @@ local on_attach = function(client, bufnr)
 
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
 
-  -- стандартные горячие клавиши для LSP, больше в документации
-  -- https://github.com/neovim/nvim-lspconfig
   map('n', 'gD', vim.lsp.buf.declaration, bufopts)
   map('n', 'gv', ':vsp<cr>vim.lsp.buf.definition()<cr>', bufopts)
   map('n', 'gd', goToPreview.goto_preview_definition, bufopts)
@@ -66,6 +61,20 @@ cmp.setup({
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-u>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.mapping.select_next_item()
+      else
+        fallback()
+      end
+    end, { "i" }),
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.mapping.select_prev_item()
+      else
+        fallback()
+      end
+    end, { "i" })
   }),
   formatting = {
     format = function(entry, vim_item)
@@ -97,3 +106,5 @@ tabnine:setup({
   run_on_every_keystroke = true,
   snippet_placeholder = '..',
 })
+
+require('nvim_comment').setup()

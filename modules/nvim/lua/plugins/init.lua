@@ -20,7 +20,7 @@ return require('packer').startup(function(use)
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/nvim-cmp'
-  use('onsails/lspkind-nvim')
+  use 'onsails/lspkind-nvim'
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
@@ -60,6 +60,8 @@ return require('packer').startup(function(use)
       }
     end
   }
+
+  use "terrortylor/nvim-comment"
 
   if packer_bootstrap then
     require('packer').sync()
