@@ -9,7 +9,10 @@ return require("nvim-tree").setup({
   view = {
     adaptive_size = true,
     mappings = {
-      list = {},
+      list = {
+        { key = "p", action = "parent_node" },
+        { key = "s", action = "vsplit" },
+      },
     },
   },
   renderer = {
