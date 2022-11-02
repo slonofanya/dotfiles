@@ -69,35 +69,24 @@ cmp.setup({
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif vim.fn["vsnip#available"](1) then
-        vim.fn.feedkeys(t('<Plug>(vsnip-expand-or-jump)', ''))
       else
         fallback()
       end
-    end, {
-      "i",
-      "s"
-    }),
-    ['<S-Tab>'] = function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif vim.fn["vsnip#jumpable"](-1) then
-        vim.fn.feedkeys(t('<Plug>(vsnip-jump-prev)', ''))
-      else
-        fallback()
-      end
-    end,
+    end, { "i", "s" }),
   }),
   formatting = {
     format = function(entry, vim_item)
       vim_item.kind = lspkind.presets.default[vim_item.kind]
       local menu = source_mapping[entry.source.name]
+
       if entry.source.name == 'cmp_tabnine' then
         if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
           menu = entry.completion_item.data.detail .. ' ' .. menu
         end
+
       vim_item.kind = ''
       end
+
       vim_item.menu = menu
       return vim_item
     end
