@@ -54,6 +54,10 @@ sudo ln -s /home/sl/install/dotfiles/tools/ripgrep-0.6.0-x86_64-unknown-linux-mu
 or:
 ```
 sudo snap install rg-ripgrep
+
+# NVIM
+```
+
 ```
 
 # VIM (8.1)
@@ -104,4 +108,10 @@ git clone git://github.com/drmad/tmux-git.git ~/.tmux-git
 sudo ln -s ~/install/tmux/tmux /usr/local/bin/
 sudo ln -s ~/install/dotfiles/modules/tmux/.tmux.conf ~/.tmux.conf
 # For installing tmux plugins press: "<prefix> + I" and wait for install
+```
+
+# RECIPES
+
+```
+rg [pattern] --files-with-matches | xargs sed -i -e "s/[pattern]/[replacement]/g"
 ```

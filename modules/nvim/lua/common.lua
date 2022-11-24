@@ -22,6 +22,7 @@ o.expandtab = true
 o.autoindent = true
 o.autowrite = true
 
+o.undofile = true
 o.undodir = os.getenv('HOME') .. '/.vim/undodir'
 o.swapfile = false
 o.backup = false
