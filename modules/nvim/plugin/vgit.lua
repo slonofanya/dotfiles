@@ -4,6 +4,7 @@ vgit.setup({
   keymaps = {
     ['n <C-k>'] = function() vgit.hunk_up() end,
     ['n <C-j>'] = function() vgit.hunk_down() end,
+    ['n <leader>gh'] = function() require('vgit').buffer_history_preview() end,
     ['n <leader>gf'] = function() vgit.buffer_diff_preview() end,
     ['n <leader>gb'] = function() vgit.buffer_gutter_blame_preview() end,
     ['n <leader>gd'] = function() vgit.project_diff_preview() end,
