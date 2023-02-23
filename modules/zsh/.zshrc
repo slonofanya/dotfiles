@@ -217,6 +217,7 @@ zstyle ':completion::complete:n-kill::bits' matcher 'r:|=** l:|=*'
 
 # tools
 alias fs=df -h
+alias u=z
 
 export DISPLAY=:0
 export FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT=1
