@@ -31,7 +31,9 @@ local on_attach = function(client, bufnr)
   map('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
   map('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
   map('n', 'gr', vim.lsp.buf.references, bufopts)
-  map('n', '<leader>f', vim.lsp.buf.formatting, bufopts)
+  map('n', '<leader>f', function()
+    vim.lsp.buf.format({ async=true })
+  end, bufopts)
 end
 
 local lsp_flags = {
@@ -74,31 +76,54 @@ cmp.setup({
       end
     end, { "i", "s" }),
   }),
+
   formatting = {
     format = function(entry, vim_item)
-      vim_item.kind = lspkind.presets.default[vim_item.kind]
-      local menu = source_mapping[entry.source.name]
+      vim_item.kind = lspkind.symbolic(vim_item.kind, {mode = "symbol"})
+      vim_item.menu = source_mapping[entry.source.name]
 
-      if entry.source.name == 'cmp_tabnine' then
-        if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
-          menu = entry.completion_item.data.detail .. ' ' .. menu
+      if entry.source.name == "cmp_tabnine" then
+        local detail = (entry.completion_item.labelDetails or {}).detail
+        vim_item.kind = ""
+        if detail and detail:find('.*%%.*') then
+            vim_item.kind = vim_item.kind .. ' ' .. detail
         end
 
-      vim_item.kind = ''
+        if (entry.completion_item.data or {}).multiline then
+            vim_item.kind = vim_item.kind .. ' ' .. '[ML]'
+        end
       end
 
-      vim_item.menu = menu
+      local maxwidth = 80
+      vim_item.abbr = string.sub(vim_item.abbr, 1, maxwidth)
       return vim_item
     end
   },
+
   sources = cmp.config.sources({
     { name = 'cmp_tabnine' },
     { name = 'nvim_lsp' },
   }, {
     { name = 'buffer' },
     { name = "rg" },
-  })
+  }),
+
+  snippet = {
+    expand = function(args)
+      local luasnip = require("luasnip")
+
+      if not luasnip then
+        return
+      end
+
+      luasnip.lsp_expand(args.body)
+    end,
+  }
 })
+
+
+-- make a config for copilot plugin for neovim
+
 
 local tabnine = require('cmp_tabnine.config')
 tabnine:setup({
@@ -112,13 +137,15 @@ tabnine:setup({
 require('nvim_comment').setup()
 
 require("lsp-format").setup {
-    typescript = {
-        tab_width = function()
-            return vim.opt.shiftwidth:get()
-        end,
-    },
-    yaml = { tab_width = 2 },
+  typescript = {
+    tab_width = function()
+      return vim.opt.shiftwidth:get()
+    end,
+  },
+
+  yaml = { tab_width = 2 },
 }
+
 -- local prettier = {
 --     formatCommand = [[prettier --stdin-filepath ${INPUT} ${--tab-width:tab_width}]],
 --     formatStdin = true,
