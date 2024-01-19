@@ -28,7 +28,7 @@ return require('packer').startup(function(use)
       require('plugins.treesitter')
     end
   }
-  use "lukas-reineke/lsp-format.nvim"
+  use 'lukas-reineke/lsp-format.nvim'
 
   use {
     'L3MON4D3/LuaSnip',
@@ -42,7 +42,7 @@ return require('packer').startup(function(use)
   use 'saadparwaiz1/cmp_luasnip'
   use 'rafamadriz/friendly-snippets'
   use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
-  use "lukas-reineke/cmp-rg"
+  use 'lukas-reineke/cmp-rg'
 
   use 'navarasu/onedark.nvim'
 
@@ -56,14 +56,14 @@ return require('packer').startup(function(use)
   use {
     'rmagatti/auto-session',
     config = function()
-      require("auto-session").setup {
-        log_level = "error",
-        auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/"},
+      require('auto-session').setup {
+        log_level = 'error',
+        auto_session_suppress_dirs = { '~/', '~/Projects', '~/Downloads', '/'},
       }
     end
   }
 
-  use "terrortylor/nvim-comment"
+  use 'terrortylor/nvim-comment'
 
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
@@ -80,6 +80,30 @@ return require('packer').startup(function(use)
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
+
+  use {
+    'norcalli/nvim-colorizer.lua',
+    config = function()
+      require("colorizer").setup()
+    end
+  }
+
+  use {
+    'zbirenbaum/copilot.lua',
+    cmd = 'Copilot',
+    event = 'VimEnter',
+    config = function()
+      require("copilot").setup()
+    end,
+  }
+
+  use {
+    'zbirenbaum/copilot-cmp',
+    after = { "copilot.lua", "nvim-cmp" },
+    config = function ()
+      require('copilot_cmp').setup()
+    end
   }
 
   if packer_bootstrap then

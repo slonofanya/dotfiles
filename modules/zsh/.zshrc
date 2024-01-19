@@ -232,3 +232,10 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH="$PATH:$HOME/.rvm/bin"
 
 eval $(/opt/homebrew/bin/brew shellenv)
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+export PATH="/Users/sl/Library/Python/3.11/bin:$PATH"
+export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
+export LIBRARY_PATH="$LIBRARY_PATH:/opt/homebrew/opt/openssl@3/lib/"
+export CGO_CFLAGS="$(pkg-config --cflags openssl)"
+export CGO_LDFLAGS="$(pkg-config --libs openssl)"
+export LDFLAGS="-I/opt/homebrew/opt/openssl/include -L/opt/homebrew/opt/openssl/lib"
