@@ -42,7 +42,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   end,
 })
 
-return require("nvim-tree").setup({
+require("nvim-tree").setup({
   on_attach = on_attach,
   sort_by = "case_sensitive",
   view = {

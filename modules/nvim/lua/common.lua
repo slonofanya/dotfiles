@@ -8,6 +8,8 @@ o.autoread = true
 nmap('<leader>r', ':source $MYVIMRC<CR>')
 imap('jk', '<Esc>')
 
+o.termguicolors = true
+
 o.background = 'dark'
 o.encoding = 'UTF-8'
 o.backupcopy = 'yes'
