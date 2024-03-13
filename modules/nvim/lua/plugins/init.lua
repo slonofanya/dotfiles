@@ -28,14 +28,19 @@ require("lazy").setup({
     end,
   },
 
+  'lukas-reineke/cmp-rg',
+
   'neovim/nvim-lspconfig',
   'hrsh7th/cmp-nvim-lsp',
   'lukas-reineke/lsp-format.nvim',
+  {
+    'Exafunction/codeium.vim',
+    event = 'BufEnter'
+  },
   'hrsh7th/cmp-buffer',
   'hrsh7th/cmp-path',
   'hrsh7th/nvim-cmp',
   'onsails/lspkind-nvim',
-  'lukas-reineke/cmp-rg',
 
   {
     'nvim-treesitter/nvim-treesitter',
