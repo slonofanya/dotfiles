@@ -40,9 +40,9 @@ require("lazy").setup({
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
-    -- config = function()
-    --   require('plugins.treesitter')
-    -- end
+    config = function()
+      require('plugins.treesitter')
+    end,
 
     build = ":TSUpdate",
     config = function () 
@@ -90,7 +90,6 @@ require("lazy").setup({
 
   {
     'nvim-lualine/lualine.nvim',
-    -- dependencies = { 'kyazdani42/nvim-web-devicons' }
   },
 
   {
