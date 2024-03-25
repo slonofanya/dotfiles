@@ -104,13 +104,13 @@ cmp.setup({
   },
 
   sources = cmp.config.sources({
-    { name = 'copilot' },
+    -- { name = 'copilot' },
     -- { name = 'cmp_tabnine' },
-    { name = 'nvim_lsp' },
-  }, {
-    { name = 'buffer' },
-    { name = 'rg' },
-    { name = 'rg' },
+  --   { name = 'nvim_lsp' },
+  -- }, {
+  --   { name = 'buffer' },
+  --   { name = 'rg' },
+  --   { name = 'rg' },
   }),
 
   snippet = {
