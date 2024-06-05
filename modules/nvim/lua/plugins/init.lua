@@ -16,7 +16,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   'navarasu/onedark.nvim',
-
   'nvim-lua/plenary.nvim',
 
   {
@@ -29,13 +28,12 @@ require("lazy").setup({
   },
 
   'lukas-reineke/cmp-rg',
-
   'neovim/nvim-lspconfig',
   'hrsh7th/cmp-nvim-lsp',
   'lukas-reineke/lsp-format.nvim',
   {
     'Exafunction/codeium.vim',
-    event = 'BufEnter'
+    event = 'BufEnter',
   },
   'hrsh7th/cmp-buffer',
   'hrsh7th/cmp-path',
@@ -65,7 +63,13 @@ require("lazy").setup({
   {
     'rmagatti/goto-preview',
     config = function()
-      require('goto-preview').setup {}
+      require('goto-preview').setup {
+        width = 120;
+        height = 30;
+        references = { -- Configure the telescope UI for slowing the references cycling window.
+          telescope = require("telescope.themes").get_dropdown({ hide_preview = false })
+        };
+      }
     end
   },
 
@@ -100,7 +104,7 @@ require("lazy").setup({
     },
     cmd = { 'Fugit2', 'Fugit2Graph' },
     keys = {
-      { '<leader>f', mode = 'n', '<cmd>Fugit2<cr>' }
+      { '<leader>F', mode = 'n', '<cmd>Fugit2<cr>' }
     }
   },
 
