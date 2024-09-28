@@ -32,6 +32,10 @@ require("lazy").setup({
   'hrsh7th/cmp-nvim-lsp',
   'lukas-reineke/lsp-format.nvim',
   {
+    'jose-elias-alvarez/null-ls.nvim',  -- Null LS for integrating linters and formatters that are not LSP-based
+    dependencies = { 'nvim-lua/plenary.nvim' },
+  },
+  {
     'Exafunction/codeium.vim',
     event = 'BufEnter',
   },

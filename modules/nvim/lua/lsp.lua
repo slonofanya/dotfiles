@@ -164,8 +164,47 @@ require('lspconfig').efm.setup {
     },
 }
 
+lspconfig.eslint.setup({
+    on_attach = function(client, bufnr)
+        -- Optionally, configure keybindings and other settings here
+        local function buf_set_option(...)
+            vim.api.nvim_buf_set_option(bufnr, ...)
+        end
+
+        -- Disable formatting if you want to use another formatter
+        client.server_capabilities.documentFormattingProvider = false
+    end,
+    settings = {
+        eslint = {
+            -- Specify if ESLint should check the file for errors
+            enable = true,
+            -- If you want ESLint to autofix errors on save
+            autoFixOnSave = true,
+            -- Path to your project's ESLint configuration
+            configFile = '.eslintrc.js'
+        },
+    },
+    root_dir = lspconfig.util.root_pattern('.eslintrc.js', 'package.json', '.git'),
+})
 
 local util = require 'lspconfig.util'
+
+local null_ls = require("null-ls")
+
+null_ls.setup({
+    sources = {
+        null_ls.builtins.diagnostics.eslint_d.with({
+            condition = function(utils)
+                return utils.root_has_file(".eslintrc.js") -- Only enable if you have a local .eslintrc.js
+            end,
+        }),
+        null_ls.builtins.formatting.prettier.with({
+            condition = function(utils)
+                return utils.root_has_file(".prettierrc.js") or utils.root_has_file(".prettierrc")
+            end,
+        }),
+    },
+})
 
 local root_files = {
   'pyproject.toml',
