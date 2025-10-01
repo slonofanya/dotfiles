@@ -1,9 +1,12 @@
+-- Disable netrw (recommended by nvim-tree)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-vim.opt.termguicolors = true
 
-nmap('<Leader>N', ':NvimTreeToggle<CR>')
-nmap('<Leader>n', ':NvimTreeFindFile<CR>')
+-- Only setup if nvim-tree is loaded
+local ok, nvim_tree = pcall(require, 'nvim-tree')
+if not ok then
+  return
+end
 
 local function on_attach(bufnr)
   local api = require('nvim-tree.api')
@@ -29,20 +32,10 @@ local function on_attach(bufnr)
   end
 end
 
-vim.api.nvim_create_autocmd({ 'BufEnter' }, {
-  pattern = 'NvimTree*',
-  callback = function()
-    local api = require('nvim-tree.api')
-    -- local view = require('nvim-tree.view')
+-- Removed auto-open on BufEnter for better performance
+-- Users can manually open with <Leader>N or <Leader>n
 
-    -- if not view.is_visible() then
-    if not api.tree.is_visible() then
-      api.tree.open()
-    end
-  end,
-})
-
-require("nvim-tree").setup({
+nvim_tree.setup({
   on_attach = on_attach,
   sort_by = "case_sensitive",
   view = {

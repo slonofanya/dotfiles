@@ -100,11 +100,36 @@ source $ZSH/oh-my-zsh.sh
 
 DEFAULT_USER="sl"
 
+# Lazy load NVM for faster shell startup
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-nvm use --delete-prefix stable --silent
-#alias loadnvm='[ -s "$NVM_DIR/nvm.sh"  ] && . "$NVM_DIR/nvm.sh"'
-#alias lnd='loadnvm && nvm use --delete-prefix stable --silent'
+# Defer NVM loading until first use
+nvm() {
+  unset -f nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+  nvm "$@"
+}
+
+# Lazy load node, npm, npx
+node() {
+  unset -f node
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+  nvm use --delete-prefix stable --silent
+  node "$@"
+}
+
+npm() {
+  unset -f npm
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+  nvm use --delete-prefix stable --silent
+  npm "$@"
+}
+
+npx() {
+  unset -f npx
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+  nvm use --delete-prefix stable --silent
+  npx "$@"
+}
 
 export PATH="$PATH:$HOME/install/dotfiles/tools"
 export PATH="$PATH:$HOME/install/dotfiles/tools/ripgrep-0.6.0-x86_64-unknown-linux-musl"
@@ -113,7 +138,10 @@ export PATH="$PATH:NVM_DIR"
 
 export VIM_ROOT=~/.vim
 
-source $HOME/install/dotfiles/tools/z/z.sh
+# Lazy load z.sh for faster startup
+if [ -f "$HOME/install/dotfiles/tools/z/z.sh" ]; then
+  source $HOME/install/dotfiles/tools/z/z.sh
+fi
 
 export CLICOLOR=1
 export EDITOR='nvim'
@@ -231,12 +259,20 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
-eval $(/opt/homebrew/bin/brew shellenv)
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
-export PATH="/Users/sl/Library/Python/3.11/bin:$PATH"
-export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
-export PATH="/Users/sl/.gem/ruby/3.0.0/bin:$PATH"
-export LIBRARY_PATH="$LIBRARY_PATH:/opt/homebrew/opt/openssl@3/lib/"
-export CGO_CFLAGS="$(pkg-config --cflags openssl)"
-export CGO_LDFLAGS="$(pkg-config --libs openssl)"
-export LDFLAGS="-I/opt/homebrew/opt/openssl/include -L/opt/homebrew/opt/openssl/lib"
+# Lazy load homebrew (macOS specific)
+if [ -x "/opt/homebrew/bin/brew" ]; then
+  eval $(/opt/homebrew/bin/brew shellenv)
+  export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+  export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
+  export LIBRARY_PATH="$LIBRARY_PATH:/opt/homebrew/opt/openssl@3/lib/"
+  # Lazy evaluate pkg-config when needed
+  [ -x "$(command -v pkg-config)" ] && {
+    export CGO_CFLAGS="$(pkg-config --cflags openssl 2>/dev/null || echo '')"
+    export CGO_LDFLAGS="$(pkg-config --libs openssl 2>/dev/null || echo '')"
+  }
+  export LDFLAGS="-I/opt/homebrew/opt/openssl/include -L/opt/homebrew/opt/openssl/lib"
+fi
+
+# User-specific paths (only if they exist)
+[ -d "/Users/sl/Library/Python/3.11/bin" ] && export PATH="/Users/sl/Library/Python/3.11/bin:$PATH"
+[ -d "/Users/sl/.gem/ruby/3.0.0/bin" ] && export PATH="/Users/sl/.gem/ruby/3.0.0/bin:$PATH"

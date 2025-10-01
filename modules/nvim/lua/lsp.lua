@@ -135,8 +135,6 @@ cmp.setup({
 --   snippet_placeholder = '..',
 -- })
 
-require('nvim_comment').setup()
-
 require('lsp-format').setup {
   typescript = {
     tab_width = function()
