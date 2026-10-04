@@ -26,7 +26,7 @@ o.autoindent = true
 o.autowrite = true
 
 o.undofile = true
-o.undodir = os.getenv('HOME') .. '/.vim/undodir'
+o.undodir = vim.fn.stdpath('state') .. '/undo'
 o.swapfile = false
 o.backup = false
 

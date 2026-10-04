@@ -1,124 +1,46 @@
 # dotfiles
 
-## Prerequisites:
-  - ubuntu
-  - python3
-  - pip3
+Personal Ubuntu dev environment: **neovim** (the only editor; vim was removed), zsh, tmux, alacritty, elinks, plus docker/ansible helpers.
 
-# DOTFILES
-```
-sudo add-apt-repository ppa:twodopeshaggy/jarun
-sudo apt update
-sudo apt install git curl -y
-mkdir ~/install
-git clone git@github.com:slonofanya/dotfiles.git ~/install/dotfiles --recursive
-```
+## Quick start (humans and LLM agents)
 
-# Ansible
+> **For an LLM agent given this repo URL:** clone it, run `install.sh` for the modules the user wants, then run each module's *Verify* step. Do not edit files outside `~/` and the repo. Ask before running anything needing `sudo` that is not listed below. Per-module details are in each linked README.
 
-## Install dependencies
+```bash
+sudo apt update && sudo apt install -y git curl
+git clone https://github.com/slonofanya/dotfiles.git ~/install/dotfiles
+cd ~/install/dotfiles
+./install.sh                 # default: zsh nvim tmux
+./install.sh nvim alacritty  # or pick modules
 ```
-# Setup ssh without password
-sudo visudo
-  # Add this line to end
-  #sl      ALL=(ALL:ALL) NOPASSWD:ALL
+`install.sh` symlinks configs into `$HOME` (existing files are backed up as `*.bak`) and installs apt packages.
 
-pip install ansible
-sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 2
-ssh-copy-id -i $HOME/.ssh/id_rsa.pub $USER@localhost
+- **Prerequisites:** Ubuntu, `sudo`, network access. Repo location is expected at `~/install/dotfiles` (paths in `.zshrc` and `ansible.cfg` assume it).
+- **No submodules** are needed any more; plain `git clone` is enough.
 
-cd ~/install/dotfiles/modules/ansible
-ansible-playbook -i hosts playbook.yml
-```
+## Modules
 
-# ZSH
-```
-sudo apt-get install zsh -y
-ln -s ~/install/dotfiles/modules/zsh/.zshrc ~/.zshrc
-chmod +x ~/install/dotfiles/modules/zsh/install.sh
-~/install/dotfiles/modules/zsh/install.sh
-# restart
-chsh -s /bin/zsh
-```
+| Module | What | Setup | Auto in `install.sh` |
+|---|---|---|---|
+| [nvim](modules/nvim/README.md) | Neovim (Lua, lazy.nvim, LSP, telescope, treesitter) | symlink to `~/.config/nvim` | yes |
+| [zsh](modules/zsh/README.md) | zsh, oh-my-zsh, fzf, z, aliases | symlink `~/.zshrc` + `install.sh` | symlink only (run `modules/zsh/install.sh` for oh-my-zsh) |
+| [tmux](modules/tmux/README.md) | tmux config + TPM plugins | symlink `~/.tmux.conf` | yes |
+| [alacritty](modules/alacritty/README.md) | Terminal config | symlink | yes |
+| [elinks](modules/elinks/README.md) | Text browser, vim-like keys | symlink | yes |
+| [docker](modules/docker/README.md) | nginx + certbot static site | docker compose | no |
+| [ansible](modules/ansible/README.md) | Installs Docker CE | ansible-playbook | no |
+| [chrome-driver](modules/chrome-driver/README.md) | Chrome + ChromeDriver + Selenium (legacy) | script | no |
 
-# NVM
-```
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-nvm install stable
-```
+`tools/` holds helper binaries/scripts added to `PATH` by `.zshrc` (ripgrep 0.6.0, `frg`). Prefer `sudo apt install ripgrep`.
 
-# RIPGREP
-```
-sudo ln -s /home/sl/install/dotfiles/tools/ripgrep-0.6.0-x86_64-unknown-linux-musl/rg /usr/local/bin
-```
-or:
-```
-sudo snap install rg-ripgrep
-```
-
-# FASTMOD
-```
-  # Find and replace by pattern in directory
-  # https://github.com/facebookincubator/fastmod
-  brew isntall fastmod
-```
-
-# NVIM
-```
-
-```
-
-# VIM (8.1)
-```
-export VIM_ROOT=~/.vim
-mkdir $VIM_ROOT
-ln -s ~/install/dotfiles/modules/vim/.vimrc ~/.vimrc
-ln -s ~/install/dotfiles/modules/vim/pack ${VIM_ROOT}/pack
-mkdir ${VIM_ROOT}/backups
-mkdir ${VIM_ROOT}/swapfiles
-mkdir ${VIM_ROOT}/session
-mkdir ${VIM_ROOT}/undodir
-
-sudo apt install build-essential cmake python3-dev vim -y
-
-// Install cargo and rust
+## Other tools
+```bash
+# nvm / node (needed by nvim LSPs)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash && nvm install stable
+# rust
 curl https://sh.rustup.rs -sSf | sh
-
-curl -fLo ${VIM_ROOT}/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-git clone https://github.com/joshdick/onedark.vim ~/install/ondark.vim
-cp ~/install/ondark.vim/autoload/onedark.vim ~/.vim/autoload/
-cp -r ~/install/ondark.vim/colors ~/.vim/autoload/
-
-mkdir ~/.z
-cd ${VIM_ROOT}/pack/vendor/start/fzf
-./install --all
-
-cd ${VIM_ROOT}/pack/vendor/start/youcompleteme
-python3 ./install.py --clang-completer --system-libclang --ts-completer
-wget -O ${VIM_ROOT}trans git.io/trans && chmod +x ${VIM_ROOT}trans
-
-# Typescript langserver:
-#  https://github.com/sourcegraph/javascript-typescript-langserver
+# fastmod (find & replace by pattern): https://github.com/facebookincubator/fastmod
 ```
 
-
-# TMUX
-```
-sudo apt-get install automake libevent-dev libncurses-dev pkg-config bison -y
-alias yacc="bison"
-git clone https://github.com/tmux/tmux.git ~/install/tmux
-cd ~/install/tmux
-sh autogen.sh
-./configure && make
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-git clone git://github.com/drmad/tmux-git.git ~/.tmux-git
-sudo ln -s ~/install/tmux/tmux /usr/local/bin/
-sudo ln -s ~/install/dotfiles/modules/tmux/.tmux.conf ~/.tmux.conf
-# For installing tmux plugins press: "<prefix> + I" and wait for install
-```
-
-# RECIPES
-
-```
-```
+## Docker test image
+`Dockerfile` builds a minimal container with zsh + neovim from this repo: `docker build -t dotfiles . && docker run -it dotfiles zsh`.

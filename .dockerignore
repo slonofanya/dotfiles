@@ -1,3 +1,13 @@
+.git
+.gitignore
+**/node_modules/**
+**/.cache/**
+**/.venv/**
+**/dist/**
+**/build/**
+**/.DS_Store
+**/*.log
+
 node_modules
 *.log
 .git
