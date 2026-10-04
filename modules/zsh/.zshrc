@@ -111,7 +111,6 @@ export PATH="$PATH:$HOME/install/dotfiles/tools/ripgrep-0.6.0-x86_64-unknown-lin
 export PATH="$PATH:$HOME/app"
 export PATH="$PATH:NVM_DIR"
 
-export VIM_ROOT=~/.vim
 
 source $HOME/install/dotfiles/tools/z/z.sh
 
